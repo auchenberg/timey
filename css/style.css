@@ -85,6 +85,7 @@ input {
     left: -20px;
 
     transition: left 200ms ease-in-out;
+    transition-delay: 300ms;
 }
 
 .places li .remove {

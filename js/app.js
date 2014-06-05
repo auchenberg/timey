@@ -2,6 +2,7 @@
 
     var places = [];
     var autocompleter;
+    var baseTime = null;
 
     function initialize() {
 
@@ -58,7 +59,12 @@
 
         places.forEach(function(place) {
 
-            var localTime = moment().tz(place.timezoneId);
+        	var localTime = moment().tz(place.timezoneId);
+
+        	if(baseTime) {
+				localTime = baseTime.tz(place.timezoneId);
+        	} 
+
             var localTimeHour = parseInt(localTime.format("HH"), 10);
             var activity = getActivityText(localTimeHour);
 
@@ -127,7 +133,22 @@
     }
 
     function onPlacesInputChanged(e) {
-        // TODO: Increment/decrement values in all number inputs on change
+
+    	var value = e.target.value;
+    	var placeId = e.target.parentNode.parentNode.attributes['data-id'].value;
+
+    	var place = places.filter(function(place) {
+            return place.referenceId === placeId;
+        })[0];
+
+    	// Calculate new base time
+    	baseTime = moment().tz(place.timezoneId).hour(value);
+
+    	renderPlaces();
+
+    	document.querySelector('li[data-id=' + placeId + '] input.hour').focus();
+
+
     };
 
     // Helper methods
