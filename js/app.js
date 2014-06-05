@@ -71,13 +71,13 @@
             html.push('<li class="zone" data-id="' + place.referenceId + '">');
             html.push('<div class="time">');
             html.push('<input type="number" class="hour" value="' + localTime.format('HH') + '" />');
-            html.push('<input type="text" class="minute" value="' + localTime.format('mm') + '" />');
+            html.push('<input type="text" tabindex="-1" class="minute" value="' + localTime.format('mm') + '" />');
             html.push('</div>');
             html.push('<div class="body">');
             html.push('<span class="name">' + place.name + '</span>');
             html.push('<span class="activity">' + activity + '</span>');
             html.push('</div>');
-            html.push('<button class="remove">x</button>');
+            html.push('<button tabindex="-1" class="remove">x</button>');
             html.push('</li>');
             html.push('\n');
 
