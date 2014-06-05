@@ -1,0 +1,105 @@
+body { 
+
+    width: 450px;
+    min-height: 200px;
+    padding: 0;
+    margin: 0;
+
+    font-family: "Roboto";
+    font-style: normal;  
+  
+}
+
+.map {
+    display: none;
+}
+
+input {
+    font-size: 12px;
+    width: 100%;
+    padding: 6px;
+    outline: 0;
+}
+
+.places  {
+    margin: 0;
+    padding: 0;
+}
+
+.places li { 
+    list-style-type: none;
+    margin:0; 
+    padding:5px 5px 5px 0; 
+    border-bottom:1px solid #eee; 
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.places li:hover .remove {
+    display: block;
+}
+
+.places li .time {
+    float: left;
+    margin-right: 0;
+}
+
+
+.places li .time .hour:hover ~ .minute {
+    left: 0;
+    border-color: transparent;
+}
+
+.places li .time .hour {
+    display: inline-block;
+    width:40px; 
+
+    text-align:right; 
+    font-size:16px; 
+    padding:7px; 
+    border: 0;
+    background: #fff;    
+}
+
+
+.places li .time .minute {
+    display: inline-block;
+    width:30px; 
+
+    text-align:left; 
+    font-size:16px; 
+    padding:7px; 
+    border: 0;
+    border-right:1px solid #ddd;
+    background: #fff;  
+
+    color:#aaa;
+
+    position: relative;
+    left: -20px;
+
+    transition: left 200ms ease-in-out;
+}
+
+.places li .remove {
+    float: right;
+    display: none;
+}
+
+.places li .name {
+    margin-right: 5px;
+}
+
+.places li .activity {
+    font-size: 12px;
+    color:#aaa; 
+}
+
+.places li .body {
+    flex: 1;
+}
+
