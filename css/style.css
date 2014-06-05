@@ -19,6 +19,8 @@ input {
     width: 100%;
     padding: 6px;
     outline: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .places  {
@@ -56,7 +58,7 @@ input {
 
 .places li .time .hour {
     display: inline-block;
-    width:40px; 
+    width: 50px; 
 
     text-align:right; 
     font-size:16px; 
@@ -68,7 +70,7 @@ input {
 
 .places li .time .minute {
     display: inline-block;
-    width:30px; 
+    width:40px; 
 
     text-align:left; 
     font-size:16px; 
