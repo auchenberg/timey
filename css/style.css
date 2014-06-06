@@ -1,6 +1,6 @@
 body { 
 
-    width: 450px;
+    width: 350px;
     min-height: 200px;
     padding: 0;
     margin: 0;
@@ -23,6 +23,12 @@ input {
     box-sizing: border-box;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .places  {
     margin: 0;
     padding: 0;
@@ -32,13 +38,54 @@ input {
     list-style-type: none;
     margin:0; 
     padding:5px 5px 5px 0; 
-    border-bottom:1px solid #eee; 
+    border-bottom:1px solid #6f77a9; 
 
     display: flex;
     align-items: flex-start;
     justify-content: center;
     align-items: center;
 
+    color: #fff;
+
+    transition: background-color 0.2s;
+}
+
+.places li.state-sleeping {
+    background: #2c184e;
+}
+
+.places li.state-drink {
+    background: #17317c;
+}
+
+.places li.state-dinner {
+    background: #004a91;
+}
+
+.places li.state-lunch {
+    background: #00b781;
+}
+
+.places li.state-breakfast {
+    background: #f7bb6a;
+    color: #1f170c;
+}
+
+.places li.state-breakfast .activity {
+    color: #b0854b;    
+}
+
+.places li.state-breakfast .time .minute,
+.places li.state-breakfast .time .hour {
+    color: #1f170c;
+}
+
+.places li.state-office {
+    background: #004c92;
+}
+
+.places li.state-bed {
+    background: #2f1a50;
 }
 
 .places li:hover .remove {
@@ -48,23 +95,20 @@ input {
 .places li .time {
     float: left;
     margin-right: 0;
+
 }
 
-
-.places li .time .hour:hover ~ .minute {
-    left: 0;
-    border-color: transparent;
-}
 
 .places li .time .hour {
     display: inline-block;
     width: 50px; 
 
+    color:#fff;
     text-align: left; 
     font-size: 16px; 
     padding: 7px; 
     border: 0;
-    background: #fff;    
+    background: transparent;    
 }
 
 
@@ -72,14 +116,12 @@ input {
     display: inline-block;
     width:40px; 
 
+    color:#fff;
     text-align:left; 
     font-size:16px; 
     padding:7px 0; 
     border: 0;
-    border-right:1px solid #ddd;
-    background: #fff;  
-
-    color:#aaa;
+    background: transparent;  
 
     position: relative;
     left: -20px;
@@ -99,7 +141,7 @@ input {
 
 .places li .activity {
     font-size: 12px;
-    color:#aaa; 
+    color: #f6f6f6; 
 }
 
 .places li .body {

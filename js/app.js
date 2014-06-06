@@ -65,17 +65,16 @@
 				localTime = baseTime.tz(place.timezoneId);
         	} 
 
-            var localTimeHour = parseInt(localTime.format("HH"), 10);
-            var activity = getActivityText(localTimeHour);
+            var activity = getActivityInfo(localTime);
 
-            html.push('<li class="zone" data-id="' + place.referenceId + '">');
+            html.push('<li class="zone ' + activity.cssClass + '" data-id="' + place.referenceId + '">');
             html.push('<div class="time">');
             html.push('<input type="number" class="hour" value="' + localTime.format('HH') + '" />');
-            html.push('<input type="text" tabindex="-1" class="minute" value="' + localTime.format('mm') + '" />');
+            html.push('<input type="text" tabindex="-1" class="minute" value="' + localTime.format('mm') + '" readonly />');
             html.push('</div>');
             html.push('<div class="body">');
             html.push('<span class="name">' + place.name + '</span>');
-            html.push('<span class="activity">' + activity + '</span>');
+            html.push('<span class="activity">' + activity.text + '</span>');
             html.push('</div>');
             html.push('<button tabindex="-1" class="remove">x</button>');
             html.push('</li>');
@@ -172,43 +171,42 @@
 
     };
 
-    function getActivityText(timeThere) {
+    function getActivityInfo(time) {
 
-        thisActivity = "";
-
-        if (timeThere >= 0) {
-            thisActivity = "sleeping";
-        }
-
-        if (timeThere >= 6) {
-            thisActivity = "having breakfast";
-        }
-
-        if (timeThere >= 10) {
-            thisActivity = "at the office";
-        }
-
-        if (timeThere >= 11) {
-            thisActivity = "at lunch";
-        }
-
-        if (timeThere >= 14) {
-            thisActivity = "at the office";
-        }
-
-        if (timeThere >= 17) {
-            thisActivity = "having dinner";
-        }
-
-        if (timeThere >= 20) {
-            thisActivity = "out for a drink";
-        }
+        var timeThere = parseInt(time.format("HH"), 10);
+        var thisActivity = "";
+        var cssClasses = ['activity'];
 
         if (timeThere >= 22) {
             thisActivity = "going to bed";
+            cssClasses.push("state-bed");
+        } else if (timeThere >= 20) {
+            thisActivity = "out for a drink";
+            cssClasses.push("state-drink");
+        } else if (timeThere >= 17) {
+            thisActivity = "having dinner";
+            cssClasses.push("state-dinner");
+        } else if (timeThere >= 14) {
+            thisActivity = "at the office";
+            cssClasses.push("state-office");
+        } else if (timeThere >= 11) {
+            thisActivity = "at lunch";
+            cssClasses.push("state-lunch");
+        } else if (timeThere >= 10) {
+            thisActivity = "at the office";
+            cssClasses.push("state-office");
+        } else if (timeThere >= 6) {
+            thisActivity = "having breakfast";
+            cssClasses.push("state-breakfast");
+        } else if (timeThere >= 0) {
+            thisActivity = "sleeping";
+            cssClasses.push("state-sleeping");            
         }
 
-        return 'is ' + thisActivity;
+        return {
+            text: 'is ' + thisActivity,
+            cssClass: cssClasses.join(' ')
+        };
 
     }
 
