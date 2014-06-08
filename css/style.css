@@ -1,7 +1,12 @@
-body { 
+html, body {
+    height: 100%;
+}
 
-    width: 350px;
+body { 
+    min-width: 350px;
     min-height: 190px;
+        width: 100%;
+
     padding: 0;
     margin: 0;
 
@@ -35,9 +40,17 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0;
 
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    height: calc(100% - 31px);
+
 }
 
 .places li { 
+    flex: 1;
+    display: flex;
     list-style-type: none;
     margin:0; 
     padding:5px 5px 5px 0; 
@@ -48,7 +61,9 @@ input[type=number]::-webkit-outer-spin-button {
 
     color: #fff;
 
-    transition: all 0.5s linear;    
+    font-size: 8vmin;
+
+    transition: color 0.5s linear;    
 }
 
 .places li.state-lunch {
@@ -104,12 +119,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .time .hour {
     display: inline-block;
-    width: 50px; 
+    width: auto; 
 
     color:#fff;
-    text-align: left; 
-    font-size: 16px; 
-    padding: 7px; 
+    text-align: right; 
+    font-size: 8vmin;
+    padding: 0; 
     border: 0;
     background: transparent;    
 }
@@ -117,20 +132,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .time .minute {
     display: inline-block;
-    width:40px; 
+    width: auto;
 
     color:#fff;
     text-align:left; 
-    font-size:16px; 
-    padding:7px 0; 
+    font-size: 8vmin;
+    padding: 0; 
     border: 0;
     background: transparent;  
-
-    position: relative;
-    left: -20px;
-
-    transition: left 200ms ease-in-out;
-    transition-delay: 300ms;
 }
 
 .places li .remove {
@@ -156,9 +165,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .places li .activity {
-    font-size: 12px;
+    font-size: 6vmin;
     color: #f6f6f6; 
-    transition: all 0.5s linear;   
+    transition: color 0.5s linear;   
 }
 
 .places li .body {

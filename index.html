@@ -25,8 +25,8 @@
       <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
 
         <div class="time">
-          <input type="number" class="hour" value-func="getPlaceLocalTimeHour(place)" change-event="onTimeChange($event)" />
-          <input type="text" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
+          <input type="text" size="1" class="hour" value-func="getPlaceLocalTimeHour(place)" ng-keydown="onInputKeydown($event)" />
+          <input type="text" size="1" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
         </div>
 
         <div class="body">
