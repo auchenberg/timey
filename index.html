@@ -1,26 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="app" ng-csp="">
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+  <script src="js/libs/moment.js"></script>
+  <script src="js/libs/moment-timezone.js"></script>
+  <script src="js/libs/moment-timezone-data.js"></script>
+  <script src="js/libs/angular.js"></script>
+  <script src="js/libs/angular-animate.js"></script>
+
+  <script src="js/app.js"></script>
+
 </head>
-<body>
+
+<body ng-controller="PlacesController">
 
     <input id="new-city-input" tabindex="-1" type="text" size="50" placeholder="Enter a location" autocomplete="on">
 
     <ul class="places">
-      
-    </ul>
+      <li ng-repeat="place in places track by $index" ng-class="getActivityInfoClass(place)" style='background-position: {{getPosition(place)}}px 0;'>
+
+        <div class="time">
+          <input type="number" class="hour" number-value="getPlaceLocalTimeHour(place)" change-event="onTimeChange($event)" />
+          <input type="text" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
+        </div>
+
+        <div class="body">
+          <span class="name">{{place.name}}</span>
+          <span class="activity">{{getActivityInfoText(place)}}</span>
+        </div>
+        
+        <button tabindex="-1" class="remove" ng-click="removeItem(place.referenceId)"></button>
+      </li>
+    </div>
 
     <div class="map"></div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-    <script src="js/libs/moment.js"></script>
-    <script src="js/libs/moment-timezone.js"></script>
-    <script src="js/libs/moment-timezone-data.js"></script>
-
-    <script src="js/app.js" defer async></script>
 
 </body>
 </html>

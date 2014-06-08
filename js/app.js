@@ -1,8 +1,39 @@
-(function() {
+var app = angular.module('app', []);
 
-    var places = [];
-    var autocompleter;
-    var baseTime = null;
+app.directive('changeEvent', ['$parse', function($parse) {
+    return {
+        compile: function($element, attr) {
+            var fn = $parse(attr['changeEvent']);
+
+            return function(scope, element, attr) {
+                element.on('change', function(event) {
+                    scope.$apply(function() {
+                        fn(scope, {$event:event});
+                    });
+                });
+            };
+        }
+    };
+}]);
+
+app.directive('numberValue', ['$parse', function($parse) {
+    return {
+        compile: function($element, attr) {
+            var fn = $parse(attr['numberValue']);
+
+            return function(scope, element, attr) {
+                scope.$watch(function() {
+                    element.val(fn(scope));
+                });
+            };
+        }
+    };
+}]);
+
+app.controller('PlacesController', ['$scope', function($scope) {
+
+    $scope.places = [];
+    $scope.baseTime = null;
 
     function initialize() {
 
@@ -16,7 +47,18 @@
         google.maps.event.addListener(autocompleter, 'place_changed', onAutoCompleteSuccess);
 
         loadPlacesFromStorage();
-        renderPlaces();
+    }
+
+    function storePlaces() {
+        localStorage.setItem('places', JSON.stringify($scope.places));
+    }
+
+    function loadPlacesFromStorage() {
+
+        if (localStorage.getItem('places')) {
+            $scope.places = JSON.parse(localStorage.getItem('places'));
+        }
+
     }
 
     function addNewPlace(gPlace) {
@@ -39,77 +81,18 @@
 
             var place = {
                 referenceId: gPlace.reference,
+                timezoneId: response.timeZoneId.replace('Asia/Calcutta', 'Asia/Kolkata'),
                 name: gPlace.name,
-                timezoneId: response.timeZoneId,
                 lng: lng,
                 lat: lat
             }
 
-            places.push(place);
+            $scope.places.push(place);
+            $scope.$apply();
 
             storePlaces();
-            renderPlaces();
 
         });
-    }
-
-    function renderPlaces() {
-
-        var html = [];
-
-        places.forEach(function(place) {
-
-        	var localTime = moment().tz(place.timezoneId);
-
-        	if(baseTime) {
-				localTime = baseTime.tz(place.timezoneId);
-        	} 
-
-            var activity = getActivityInfo(localTime);
-
-            html.push('<li class="zone ' + activity.cssClass + '" data-id="' + place.referenceId + '">');
-            html.push('<div class="time">');
-            html.push('<input type="number" class="hour" value="' + localTime.format('HH') + '" />');
-            html.push('<input type="text" tabindex="-1" class="minute" value="' + localTime.format('mm') + '" readonly />');
-            html.push('</div>');
-            html.push('<div class="body">');
-            html.push('<span class="name">' + place.name + '</span>');
-            html.push('<span class="activity">' + activity.text + '</span>');
-            html.push('</div>');
-            html.push('<button tabindex="-1" class="remove">x</button>');
-            html.push('</li>');
-            html.push('\n');
-
-        });
-
-        var elmPlaces = document.querySelector('.places');
-
-        elmPlaces.innerHTML = html.join('');
-        elmPlaces.addEventListener('click', onPlacesClicked, false);
-        elmPlaces.addEventListener('change', onPlacesInputChanged, false);
-
-    }
-
-    function storePlaces() {
-        localStorage.setItem('places', JSON.stringify(places));
-    }
-
-    function loadPlacesFromStorage() {
-
-        if (localStorage.getItem('places')) {
-            places = JSON.parse(localStorage.getItem('places'));
-        }
-
-    }
-
-    function removeItem(placeId) {
-
-        places = places.filter(function(place) {
-            return place.referenceId !== placeId;
-        });
-
-        storePlaces();
-
     }
 
     // Event handlers
@@ -118,60 +101,56 @@
         addNewPlace(place);
     }
 
-    function onPlacesClicked(e) {
+    $scope.getActivityInfoClass = function(place) {
+        var localTime = $scope.getPlaceLocalTime(place);
+        return $scope.getActivityInfo(localTime).cssClass;
+    }
 
-        if (e.target.tagName.toLowerCase() === 'button') { // Delete button clicked
-            e.stopPropagation();
-            e.preventDefault();
+    $scope.getActivityInfoText = function(place) {
+        var localTime = $scope.getPlaceLocalTime(place);
+        return $scope.getActivityInfo(localTime).text;
+    }
 
-            var placeId = e.target.parentNode.attributes['data-id'].value;
-            removeItem(placeId);
-            renderPlaces();
-        }
+    $scope.getPlaceLocalTime = function(place) {
+
+        var localTime = moment().tz(place.timezoneId);
+
+        if($scope.baseTime) {
+            localTime = $scope.baseTime.tz(place.timezoneId);
+        } 
+
+        return localTime;
 
     }
 
-    function onPlacesInputChanged(e) {
+    $scope.getPosition = function(place) {
 
-    	var value = e.target.value;
-    	var placeId = e.target.parentNode.parentNode.attributes['data-id'].value;
+        var localTime = $scope.getPlaceLocalTime(place);
+        var secondsOfDay = localTime.seconds() + (60 * (localTime.minutes() + (60 * localTime.hours() ) ));
 
-    	var place = places.filter(function(place) {
-            return place.referenceId === placeId;
-        })[0];
+        var totalWidth = 4200;
+        var secondsInDay = 86400;
+        
+        console.log('place', $scope.getPlaceLocalTime(place).format() );
+        console.log('localTime', localTime);
+        console.log('secondsOfDay', secondsOfDay);
+        console.log('(secondsOfDay / secondsInDay)', (secondsOfDay / secondsInDay));
 
-    	// Calculate new base time
-    	baseTime = moment().tz(place.timezoneId).hour(value);
+        var noget = ( -1 * ((secondsOfDay / secondsInDay) * totalWidth));
 
-    	renderPlaces();
+        console.log(noget);
 
-    	document.querySelector('li[data-id=' + placeId + '] input.hour').focus();
+        return noget;
 
+    }
 
-    };
+    $scope.getPlaceLocalTimeHour = function(place) {
 
-    // Helper methods
-    function getJSON(url) {
+        var time = $scope.getPlaceLocalTime(place);
+        return parseInt(time.format('HH'), 10);
+    }
 
-        return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('get', url, true);
-            xhr.responseType = 'json';
-            xhr.onload = function() {
-                var status = xhr.status;
-                if (status == 200) {
-                    resolve(xhr.response);
-                } else {
-                    reject(status);
-                }
-            };
-
-            xhr.send();
-        });
-
-    };
-
-    function getActivityInfo(time) {
+    $scope.getActivityInfo = function(time) {
 
         var timeThere = parseInt(time.format("HH"), 10);
         var thisActivity = "";
@@ -210,6 +189,43 @@
 
     }
 
+    $scope.removeItem = function(placeId) {
+
+        $scope.places = $scope.places.filter(function(place) {
+            return place.referenceId !== placeId;
+        });
+
+        storePlaces();        
+
+    }
+
+    $scope.onTimeChange = function(event, data) {
+        var time = event.target.value;
+        $scope.baseTime = moment().tz(this.place.timezoneId).hour(time);
+    }
+
     initialize();
 
-})();
+}]);
+
+
+// Helper methods
+function getJSON(url) {
+
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+            var status = xhr.status;
+            if (status == 200) {
+                resolve(xhr.response);
+            } else {
+                reject(status);
+            }
+        };
+
+        xhr.send();
+    });
+
+};

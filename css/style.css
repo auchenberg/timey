@@ -1,7 +1,7 @@
 body { 
 
     width: 350px;
-    min-height: 200px;
+    min-height: 190px;
     padding: 0;
     margin: 0;
 
@@ -19,6 +19,7 @@ input {
     width: 100%;
     padding: 6px;
     outline: 0;
+    margin: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -32,14 +33,25 @@ input[type=number]::-webkit-outer-spin-button {
 .places  {
     margin: 0;
     padding: 0;
+
+    overflow: hidden;
 }
+
+.places li.ng-enter,
+.places li.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.places ling-leave,
+.places ling-enter.ng-enter-active {
+  opacity:1;
+}
+
 
 .places li { 
     list-style-type: none;
     margin:0; 
     padding:5px 5px 5px 0; 
-    border-bottom:1px solid #6f77a9; 
-
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -47,49 +59,75 @@ input[type=number]::-webkit-outer-spin-button {
 
     color: #fff;
 
-    transition: background-color 0.2s;
+    width: 4200px;
+
+    transition: all 0.5s linear;
+
+   background: -webkit-linear-gradient(left, #00000c 0%,#ffd895 44%,#ffffff 50%,#487a9f 58%,#000c32 77%,#00000c 100%); /* Chrome10+,Safari5.1+ */
+
+    background-position: 0 0;
 }
 
 .places li.state-sleeping {
-    background: #2c184e;
+    /*background-position: 650px 0;*/
 }
 
 .places li.state-drink {
-    background: #17317c;
+    /*background-position: 1400px 0;*/
 }
 
 .places li.state-dinner {
-    background: #004a91;
+    /*background-position: 1050 0;*/
 }
 
 .places li.state-lunch {
-    background: #00b781;
+    /*background-position: 700px 0;*/
+    color: #000;
+}
+
+.places li.state-lunch .activity {
+    color: #000;    
+}
+
+.places li.state-lunch .time .minute,
+.places li.state-lunch .time .hour {
+    color: #000;
 }
 
 .places li.state-breakfast {
-    background: #f7bb6a;
-    color: #1f170c;
+    /*background-position: 0 0;*/
+    color: #23211d;
 }
 
 .places li.state-breakfast .activity {
-    color: #b0854b;    
+    color: #646464;    
 }
 
 .places li.state-breakfast .time .minute,
 .places li.state-breakfast .time .hour {
-    color: #1f170c;
+    color: #23211d;
 }
 
 .places li.state-office {
-    background: #004c92;
+    /*background-position: 350px 0;*/
+    color: #000;
+}
+
+.places li.state-office .activity {
+    color: #000;    
+}
+
+.places li.state-office .time .minute,
+.places li.state-office .time .hour {
+    color: #000;
 }
 
 .places li.state-bed {
-    background: #2f1a50;
+    /*background-position: 1800px 0;*/
 }
 
 .places li:hover .remove {
-    display: block;
+    opacity: 0.5;
 }
 
 .places li .time {
@@ -132,9 +170,24 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .remove {
     float: right;
-    display: none;
+    opacity: 0;
+    height: 20px;
+    width: 20px;
+    background: 
+        url('../icons/trash.svg')
+        no-repeat
+        center center;
+
+    background-size: contain;
+    border: 0;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
 }
 
+
+.places li .remove:hover {
+    opacity: 1;
+}
 .places li .name {
     margin-right: 5px;
 }
@@ -146,5 +199,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .body {
     flex: 1;
+}
+
+.pac-container {
+    width: 350px !important;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.pac-container:after {
+    display: none;
 }
 
