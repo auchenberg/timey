@@ -1,18 +1,18 @@
 
 {
-  "name": "Timezone Buddy",
+  "name": "Local Time In",
   "version": "1.0.0",
   "manifest_version": 2,
-  "description": "How thick is that book?",
+  "description": "See what time it is anywhere in the world - and what people in that country are doing right now." 
   "icons": {
-    "16": "icons/big_icon.png",
-    "48": "icons/big_icon.png",
-    "128": "icons/big_icon.png"
+    "16": "app/icons/big_icon.png",
+    "48": "app/icons/big_icon.png",
+    "128": "app/icons/big_icon.png"
   },
    "browser_action": {
-      "default_icon": "icons/icon.png",
-      "default_popup": "index.html"
+      "default_icon": "app/icons/icon.png",
+      "default_popup": "app/index.html"
    },
    "content_security_policy": "script-src 'self' https://maps.google.com https://*.gstatic.com https://*.googleapis.com 'unsafe-eval'; object-src 'self' ",
-   "description": "See what time it is anywhere in the world - and what people in that country are doing right now."   
+    
 }
