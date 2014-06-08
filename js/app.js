@@ -88,7 +88,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
 
             var place = {
                 referenceId: gPlace.reference,
-                timezoneId: response.data.timeZoneId.replace('Asia/Calcutta', 'Asia/Kolkata'),
+                timezoneId: response.data.timeZoneId,
                 name: gPlace.name,
                 lng: lng,
                 lat: lat
