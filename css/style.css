@@ -37,17 +37,6 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: hidden;
 }
 
-.places li.ng-enter,
-.places li.ng-leave.ng-leave-active {
-  opacity:0;
-}
-
-.places ling-leave,
-.places ling-enter.ng-enter-active {
-  opacity:1;
-}
-
-
 .places li { 
     list-style-type: none;
     margin:0; 
@@ -59,29 +48,10 @@ input[type=number]::-webkit-outer-spin-button {
 
     color: #fff;
 
-    width: 4200px;
-
-    transition: all 0.5s linear;
-
-   background: -webkit-linear-gradient(left, #00000c 0%,#ffd895 44%,#ffffff 50%,#487a9f 58%,#000c32 77%,#00000c 100%); /* Chrome10+,Safari5.1+ */
-
-    background-position: 0 0;
-}
-
-.places li.state-sleeping {
-    /*background-position: 650px 0;*/
-}
-
-.places li.state-drink {
-    /*background-position: 1400px 0;*/
-}
-
-.places li.state-dinner {
-    /*background-position: 1050 0;*/
+    transition: all 0.5s linear;    
 }
 
 .places li.state-lunch {
-    /*background-position: 700px 0;*/
     color: #000;
 }
 
@@ -95,7 +65,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .places li.state-breakfast {
-    /*background-position: 0 0;*/
     color: #23211d;
 }
 
@@ -109,7 +78,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .places li.state-office {
-    /*background-position: 350px 0;*/
     color: #000;
 }
 
@@ -122,12 +90,9 @@ input[type=number]::-webkit-outer-spin-button {
     color: #000;
 }
 
-.places li.state-bed {
-    /*background-position: 1800px 0;*/
-}
 
 .places li:hover .remove {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .places li .time {
@@ -182,12 +147,10 @@ input[type=number]::-webkit-outer-spin-button {
     border: 0;
     cursor: pointer;
     transition: opacity 0.5s ease-in-out;
+
+    margin-right: 5px;
 }
 
-
-.places li .remove:hover {
-    opacity: 1;
-}
 .places li .name {
     margin-right: 5px;
 }
@@ -195,6 +158,7 @@ input[type=number]::-webkit-outer-spin-button {
 .places li .activity {
     font-size: 12px;
     color: #f6f6f6; 
+    transition: all 0.5s linear;   
 }
 
 .places li .body {

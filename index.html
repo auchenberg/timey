@@ -9,6 +9,7 @@
   <script src="js/libs/moment.js"></script>
   <script src="js/libs/moment-timezone.js"></script>
   <script src="js/libs/moment-timezone-data.js"></script>
+  <script src="js/libs/rainbowvis.js"></script>
   <script src="js/libs/angular.js"></script>
   <script src="js/libs/angular-animate.js"></script>
 
@@ -18,13 +19,13 @@
 
 <body ng-controller="PlacesController">
 
-    <input id="new-city-input" tabindex="-1" type="text" size="50" placeholder="Enter a location" autocomplete="on">
+    <input class="new-city-input" tabindex="-1" type="text" size="50" placeholder="Enter a location" autocomplete="on">
 
-    <ul class="places">
-      <li ng-repeat="place in places track by $index" ng-class="getActivityInfoClass(place)" style='background-position: {{getPosition(place)}}px 0;'>
+    <ul class="places" ng-cloak>
+      <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
 
         <div class="time">
-          <input type="number" class="hour" number-value="getPlaceLocalTimeHour(place)" change-event="onTimeChange($event)" />
+          <input type="number" class="hour" value-func="getPlaceLocalTimeHour(place)" change-event="onTimeChange($event)" />
           <input type="text" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
         </div>
 
