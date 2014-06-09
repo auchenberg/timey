@@ -16,10 +16,10 @@ body {
 }
 
 .new-city-input {
-    height:  40px;
+    height: 44px;
     font-size: 16px;
     font-family: "Roboto";
-    padding: 20px 24px;
+    padding-left: 24px;
 }
 
 input {
