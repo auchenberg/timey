@@ -1,5 +1,22 @@
 var app = angular.module('app', []);
 
+app.directive('inputEvent', ['$parse', function($parse) {
+     return {
+         compile: function($element, attr) {
+             var fn = $parse(attr['inputEvent']);
+ 
+             return function(scope, element, attr) {
+                 element.on('change', function(event) {
+                     scope.$apply(function() {
+                         fn(scope, {$event:event});
+                     });
+                 });
+             };
+         }
+     };
+ }]);
+
+
 app.directive('valueFunc', ['$parse', function($parse) {
     return {
         compile: function($element, attr) {
@@ -123,8 +140,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
         }, 1);
     }
  
-    $scope.onInputKeydown = function(event) {
-
+    $scope.onInputChange = function(event) {
         var value = event.target.value;
 
         if(!value.length) {
@@ -132,15 +148,8 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
         }
 
         var val = parseInt(event.target.value, 10);
-        
-        if(event.which === 38) {
-            val = val + 1;
-        } else if(event.which === 40) {
-            val = val - 1;
-        }
 
         $scope.baseTime = moment().tz(this.place.timezoneId).hour(val);
-
 
     }
  

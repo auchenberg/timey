@@ -121,12 +121,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .time .hour {
     display: inline-block;
-    width: auto; 
-
+    width: 11vmin; 
+    
     color:#fff;
     text-align: right; 
     font-size: 7vmin;
-    padding: 0; 
+    padding: 0 5px; 
     border: 0;
     background: transparent;    
 }
