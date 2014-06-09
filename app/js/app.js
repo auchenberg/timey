@@ -125,17 +125,22 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
  
     $scope.onInputKeydown = function(event) {
 
-        var val = parseInt(event.target.value, 10);
+        var value = event.target.value;
 
+        if(!value.length) {
+            return;
+        }
+
+        var val = parseInt(event.target.value, 10);
+        
         if(event.which === 38) {
             val = val + 1;
-            event.preventDefault();
         } else if(event.which === 40) {
             val = val - 1;
-            event.preventDefault();
         }
 
         $scope.baseTime = moment().tz(this.place.timezoneId).hour(val);
+
 
     }
  
