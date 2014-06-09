@@ -2,7 +2,7 @@ html, body {
     height: 100%;
 }
 
-body { 
+body {
     min-width: 380px;
     min-height: 280px;
     width: 100%;
@@ -11,15 +11,15 @@ body {
     margin: 0;
 
     font-family: "Roboto";
-    font-style: normal;  
+    font-style: normal;
     font-weight: 100;
 }
 
 .new-city-input {
-    height:  40px;
+    height: 44px;
     font-size: 16px;
     font-family: "Roboto";
-    padding: 20px 24px;
+    padding-left: 24px;
 }
 
 input {
@@ -33,10 +33,10 @@ input {
     box-sizing: border-box;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .places  {
@@ -49,31 +49,29 @@ input[type=number]::-webkit-outer-spin-button {
     flex-direction: column;
 
     height: calc(100% - 44px);
-
 }
 
 .places li {
     display: flex;
     flex: 1;
-    
-    margin:0; 
+
+    margin: 0;
     padding: 20px;
-    
+
     list-style-type: none;
-     
+
     align-items: flex-start;
     justify-content: center;
     align-items: center;
 
     color: #fff;
     font-size: 7vmin;
-    transition: color 0.5s linear;  
+    transition: color 0.5s linear;
 
-    border-bottom: 1px solid #fff;  
+    border-bottom: 1px solid #fff;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 
 .places li:hover .time .hour {
     background: rgba(255,255,255, 0.2);
@@ -84,7 +82,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .places li.state-lunch .activity {
-    color: #000;    
+    color: #000;
 }
 
 .places li.state-lunch .time .minute,
@@ -97,7 +95,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .places li.state-breakfast .activity {
-    color: #646464;    
+    color: #646464;
 }
 
 .places li.state-breakfast .time .minute,
@@ -110,7 +108,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .places li.state-office .activity {
-    color: #000;    
+    color: #000;
 }
 
 .places li.state-office .time .minute,
@@ -129,29 +127,28 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .time .hour {
     display: inline-block;
-    width: 11vmin; 
-    
-    color:#fff;
-    text-align: right; 
+    width: 11vmin;
+
+    color: #fff;
+    text-align: right;
     font-size: 7vmin;
-    padding: 0 5px; 
+    padding: 0 5px;
     border: 0;
-    background: transparent;   
+    background: transparent;
 
     font-family: "Roboto";
 }
-
 
 .places li .time .minute {
     display: inline-block;
     width: auto;
 
-    color:#fff;
-    text-align:left; 
+    color: #fff;
+    text-align: left;
     font-size: 7vmin;
-    padding: 0; 
+    padding: 0;
     border: 0;
-    background: transparent;  
+    background: transparent;
 
     font-family: "Roboto";
 }
@@ -176,8 +173,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .places li .activity {
     font-size: 4vmin;
-    color: #f6f6f6; 
-    transition: color 0.5s linear;   
+    color: #f6f6f6;
+    transition: color 0.5s linear;
 }
 
 .places li .body {
@@ -197,4 +194,3 @@ input[type=number]::-webkit-outer-spin-button {
 .map {
     display: none;
 }
-
