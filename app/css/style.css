@@ -15,6 +15,13 @@ body {
     font-weight: 100;
 }
 
+.new-city-input {
+    height:  40px;
+    font-size: 16px;
+    font-family: "Roboto";
+    padding: 20px 24px;
+}
+
 input {
     font-size: 12px;
     font-weight: 100;
@@ -41,7 +48,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     flex-direction: column;
 
-    height: calc(100% - 31px);
+    height: calc(100% - 44px);
 
 }
 
@@ -178,7 +185,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .pac-container {
-    width: 350px !important;
+    width: 380px !important;
     box-shadow: none;
     border-radius: 0;
 }
