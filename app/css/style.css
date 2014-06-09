@@ -16,7 +16,6 @@ body {
 }
 
 input {
-    font-family: "Roboto";
     font-size: 12px;
     font-weight: 100;
     width: 100%;
@@ -130,7 +129,9 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 7vmin;
     padding: 0 5px; 
     border: 0;
-    background: transparent;    
+    background: transparent;   
+     
+    font-family: "Roboto";
 }
 
 
@@ -144,6 +145,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0; 
     border: 0;
     background: transparent;  
+
+    font-family: "Roboto";
 }
 
 .places li .remove {
