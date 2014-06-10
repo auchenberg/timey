@@ -7,7 +7,7 @@
     "ejs-locals": "~1.0.2"
   },
   "scripts": {
-    "start": "server.js"
+    "start": "node server.js"
   },
   "engines": {
     "node": "0.10.24",
