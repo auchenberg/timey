@@ -31,7 +31,7 @@ app.directive('valueFunc', ['$parse', function($parse) {
     };
 }]);
 
-app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
+app.controller('PlacesController', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     var rainbow, elmSearchInput;
     $scope.places = [];
@@ -52,10 +52,8 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
 
         google.maps.event.addListener(autocompleter, 'place_changed', onAutoCompleteSuccess);
 
-        // Timer for rendering every minute
-        setInterval(function() {
-            $scope.$apply();
-        }, 60 * 1000);
+        // Interval for rendering every minute
+        $interval(function(){}, 60 * 1000);
 
         loadPlacesFromStorage();
     }
