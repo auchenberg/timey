@@ -4,7 +4,7 @@ app.directive('inputEvent', ['$parse', function($parse) {
      return {
          compile: function($element, attr) {
              var fn = $parse(attr['inputEvent']);
- 
+
              return function(scope, element, attr) {
                  element.on('change', function(event) {
                      scope.$apply(function() {
@@ -36,10 +36,11 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
     var rainbow, elmSearchInput;
     $scope.places = [];
     $scope.baseTime = null;
+    $scope.settings = {};
 
     function initialize() {
 
-        rainbow = new Rainbow(); 
+        rainbow = new Rainbow();
         rainbow.setSpectrum('#00000C', '#ffd895', '#ffffff', '#487a9f', '#000c32');
         rainbow.setNumberRange(0, 100);
 
@@ -57,11 +58,12 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             $scope.$apply();
         }, 60 * 1000);
 
-        loadPlacesFromStorage();
+        loadDataFromStorage();
     }
 
-    function storePlaces() {
+    function storeData() {
         localStorage.setItem('places', JSON.stringify($scope.places));
+        localStorage.setItem('settings', JSON.stringify($scope.settings));
     }
 
     function sortPlaces(places) {
@@ -73,10 +75,14 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             } else {
                 return 1;
             }
-        });        
+        });
     }
 
-    function loadPlacesFromStorage() {
+    function loadDataFromStorage() {
+
+        if (localStorage.getItem('settings')) {
+            $scope.settings = JSON.parse(localStorage.getItem('settings'));
+        }
 
         if (localStorage.getItem('places')) {
             var data = JSON.parse(localStorage.getItem('places'));
@@ -114,7 +120,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             $scope.places.push(place);
             $scope.places = sortPlaces($scope.places);
 
-            storePlaces();
+            storeData();
 
         });
     }
@@ -125,10 +131,9 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             return place.referenceId !== placeId;
         });
 
-        storePlaces();        
+        storeData();
 
     }
-
 
     // Event handlers
     function onAutoCompleteSuccess() {
@@ -139,7 +144,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             elmSearchInput.value = '';
         }, 1);
     }
- 
+
     $scope.onInputChange = function(event) {
         var value = event.target.value;
 
@@ -149,10 +154,23 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
 
         var val = parseInt(event.target.value, 10);
 
+        var placeLocalTime = $scope.getPlaceLocalTime(this.place);
+
+        if($scope.settings.is12Hour) {
+            if(placeLocalTime.format('A') == 'PM' && val != 12.) {
+                val = val + 12;
+            }
+        }
+
         $scope.baseTime = moment().tz(this.place.timezoneId).hour(val);
 
     }
- 
+
+    $scope.onTimeDoubleClick = function(event){
+        $scope.settings.is12Hour = !$scope.settings.is12Hour;
+
+        storeData();
+    }
 
     $scope.getPlaceLocalTime = function(place) {
 
@@ -160,7 +178,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
 
         if($scope.baseTime) {
             localTime = $scope.baseTime.tz(place.timezoneId);
-        } 
+        }
 
         return localTime;
 
@@ -168,7 +186,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
 
     $scope.getPlaceLocalTimeHour = function(place) {
         var time = $scope.getPlaceLocalTime(place);
-        return time.format('HH');
+        return $scope.settings.is12Hour ? time.format('hh') : time.format('HH');
     }
 
     $scope.getGradient = function(place) {
@@ -214,7 +232,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             cssClasses.push("state-breakfast");
         } else if (timeThere >= 0) {
             thisActivity = "sleeping";
-            cssClasses.push("state-sleeping");            
+            cssClasses.push("state-sleeping");
         }
 
         return {

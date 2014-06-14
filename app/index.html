@@ -18,23 +18,24 @@
 
 </head>
 
-<body ng-controller="PlacesController">
+<body ng-controller="PlacesController" ng-class="{ 'state-12hour' : settings.is12Hour == true }">
 
     <input class="new-city-input" tabindex="-1" type="text" size="50" placeholder="Enter a location" autocomplete="on">
 
     <ul class="places" ng-cloak>
       <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
 
-        <div class="time">
+        <div class="time" ng-dblclick="onTimeDoubleClick($event)" >
           <input type="number" size="1" class="hour" value-func="getPlaceLocalTimeHour(place)" input-event="onInputChange($event)" />
           <input type="number" size="1" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
+          <input type="text" size="1" tabindex="-1" class="am-pm" value="{{ getPlaceLocalTime(place).format('A') }}" readonly ng-if="settings.is12Hour" />
         </div>
 
         <div class="body">
           <span class="name">{{place.name}}</span>
           <span class="activity">{{getActivityInfoText(place)}}</span>
         </div>
-        
+
         <button tabindex="-1" class="remove" ng-click="removeItem(place.referenceId)"></button>
       </li>
     </ul>

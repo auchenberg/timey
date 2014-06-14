@@ -39,6 +39,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+body:not(.state-12hour) .places li .time .minute {
+    margin-right: 4.5vmin;
+}
+
 .places  {
     margin: 0;
     padding: 0;
@@ -85,8 +89,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: #000;
 }
 
-.places li.state-lunch .time .minute,
-.places li.state-lunch .time .hour {
+.places li.state-lunch .time input {
     color: #000;
 }
 
@@ -98,8 +101,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: #646464;
 }
 
-.places li.state-breakfast .time .minute,
-.places li.state-breakfast .time .hour {
+.places li.state-breakfast .time input {
     color: #23211d;
 }
 
@@ -111,8 +113,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: #000;
 }
 
-.places li.state-office .time .minute,
-.places li.state-office .time .hour {
+.places li.state-office .time input {
     color: #000;
 }
 
@@ -123,6 +124,9 @@ input[type=number]::-webkit-outer-spin-button {
 .places li .time {
     float: left;
     margin-right: 0;
+    -webkit-user-select:none;
+       -moz-user-select:none;
+            user-select:none;
 }
 
 .places li .time .hour {
@@ -143,9 +147,25 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
     width: 8vmin;
 
-    color: #fff;
     text-align: left;
     font-size: 7vmin;
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    font-family: "Roboto";
+}
+
+.places li .time input {
+    color: #fff;
+}
+
+.places li .time .am-pm {
+    display: inline-block;
+    width: 11vmin;
+
+    text-align: left;
+    font-size: 4vmin;
     padding: 0;
     border: 0;
     background: transparent;
