@@ -1,7 +1,7 @@
 
 {
   "name": "Local Time In",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "manifest_version": 2,
   "description": "See what time it is anywhere in the world - and what people in that country are doing right now.",
   "icons": {
