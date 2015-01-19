@@ -98,7 +98,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
         };
 
         var lat = gPlace.geometry.location.k;
-        var lng = gPlace.geometry.location.B;
+        var lng = gPlace.geometry.location.D;
         var timestamp = Math.round(new Date().getTime() / 1000.0);
         var key = 'AIzaSyDfMh4cBrnNFsbKm4VXqunqCTTbQmk3eNI';
 
