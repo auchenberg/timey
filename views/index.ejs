@@ -23,7 +23,7 @@
 
         <input class="new-city-input" tabindex="-1" type="text" size="50" placeholder="Enter a location" autocomplete="on">
 
-        <ul class="places" ng-cloak>
+        <ul class="places" ng-cloak ng-show="places.length" >
             <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
 
                 <div class="time" ng-dblclick="onTimeDoubleClick($event)" >
@@ -41,6 +41,15 @@
 
             </li>
         </ul>
+
+        <div class="welcome" ng-hide="places.length" ng-cloak>
+            <div class="inner">
+                <img class="logo" src="images/logo.svg" />
+                <h1>Welcome to Timey</h1>
+                <h2>We build a little tool to make timezones more human and easier to understand.</h2>
+                <h3>Get started by adding your locations in the top.</h3>
+            </div>
+        </div>
 
         <div class="map"></div>
     </body>
