@@ -123,9 +123,9 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
             storeData();
 
             // Force reflow in Chrome until flexbox render issue is fixed
-            var elmList = document.querySelector('.places');
-            elmList.style.display='none';
-            elmList.style.display='block';
+            // var elmList = document.querySelector('.places');
+            // elmList.style.display='none';
+            // elmList.style.display='block';
 
         });
     }
