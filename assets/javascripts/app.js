@@ -162,7 +162,7 @@ app.controller('PlacesController', ['$scope', '$http', function($scope, $http) {
         var placeLocalTime = $scope.getPlaceLocalTime(this.place);
 
         if($scope.settings.is12Hour) {
-            if(placeLocalTime.format('A') == 'PM' && val != 12.) {
+            if(placeLocalTime.format('A') == 'PM' && val != 12) {
                 val = val + 12;
             }
         }
