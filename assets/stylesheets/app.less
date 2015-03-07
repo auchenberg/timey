@@ -9,10 +9,24 @@ body {
 
     padding: 0;
     margin: 0;
+    background: #F1EFEB;
 
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 100;
+    font: normal 13px Roboto,arial,sans-serif;
+    font-weight: 300;
+    text-transform: none;
+    color: #5A6063;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 38px;    
+}
+
+h3 {
+    font-size: 20px;
 }
 
 .new-city-input {
@@ -52,7 +66,7 @@ body:not(.state-12hour) .places li .time .minute {
     display: flex;
     flex-direction: column;
 
-    height: calc(100% - 44px);
+    height: calc(~"100% - 44px");
 }
 
 .places li {
