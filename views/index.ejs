@@ -21,7 +21,7 @@
 
     <body ng-controller="PlacesController" ng-class="{ 'state-12hour' : settings.is12Hour == true }">
 
-        <input class="new-city-input" tabindex="-1" type="text" size="50" placeholder="Enter a location" autocomplete="on">
+        <input class="new-city-input" tabindex="-1" type="text" size="50" placeholder="Add timezone by entering location" autocomplete="on">
 
         <ul class="places" ng-cloak ng-show="places.length" >
             <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
