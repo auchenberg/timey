@@ -287,7 +287,7 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
     $scope.updateUrl = function() {
 
         var names = $scope.places.map(function(place) {
-            return place.name.replace(' ', '_').toLowerCase();
+            return place.name.replace(' ', '+').toLowerCase();
         });
 
         var path = names.join('/');
