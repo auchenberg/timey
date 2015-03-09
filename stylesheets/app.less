@@ -250,7 +250,33 @@ body:not(.state-12hour) .places li .time .minute {
         margin: 0 auto;
     }
 
-    .logo {
+    #clock-container { 
+        display: inline-block;
+        position: relative;
         width: 30vmin;
+        vertical-align: middle;
+        overflow: hidden;
+        
+        .clock {
+            fill: #F1F2F2;
+        }
+
+        .hour {
+            fill: #414042;
+            stroke-width: 0px;
+        }
+
+        .minute {
+            fill: #414042;
+            stroke-width: 0px;
+        }        
+      
+    } 
+
+    #sec { 
+        stroke: #CF2257;
+        stroke-width: 2px;
     }
+
+
 }

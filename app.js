@@ -82,6 +82,70 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
 
         loadDataFromStorage();
         parseUrlZones();
+
+
+        setInterval(function() {
+            drawHands();
+        }, 1000)
+        
+    }
+
+   var drawHands = function() {
+        // Constants for hand's sizes.
+        var SECONDS_HAND_SIZE = 0.65,
+        MINUTES_HAND_SIZE = 0.55,
+        HOURS_HAND_SIZE = 0.40;
+
+        var circle = document.getElementById("circle");
+
+        // Clock Circle's Properties
+        var r = circle.getAttribute('r'),
+        cx = parseInt(circle.getAttribute('cx')),
+        cy = parseInt(circle.getAttribute('cy'));
+
+        // Current time.
+        var currentTime = new Date();
+
+        // Draw Hands
+        drawHand(document.getElementById("sec"),
+                 currentTime.getSeconds(),
+                 SECONDS_HAND_SIZE,
+                 6);
+        drawHand(document.getElementById("min"),
+                 currentTime.getMinutes(),
+                 MINUTES_HAND_SIZE,
+                 6);
+        drawHand(document.getElementById("hour"),
+                 currentTime.getHours(),
+                 HOURS_HAND_SIZE,
+                 30);
+        
+        function drawHand(hand, value, size, degrees) {
+            var deg = degrees * value;
+            x2 = getX(deg, r, size, cx),
+            y2 = getY(deg, r, size, cy);
+            
+            hand.setAttribute('x1', cx);
+            hand.setAttribute('y1', cy); 
+            hand.setAttribute('x2', x2);
+            hand.setAttribute('y2', y2); 
+        }
+    };
+
+    function getX(degrees, r, adjust, x) {
+        var x = x || r, 
+        adj = adjust || 1;
+        return x + r * adj * Math.cos(getRad(degrees));
+    }
+    function getY(degrees, r, adjust, y) {
+        var y = y || r,
+        adj = adjust || 1;
+        return y + r * adj * Math.sin(getRad(degrees));
+    }
+
+    function getRad(degrees) {
+        var adjust = Math.PI / 2;
+        return (degrees * Math.PI / 180) - adjust;
     }
 
     function storeData() {
