@@ -1,56 +1,31 @@
 <!DOCTYPE html>
     
 <html lang="en" ng-app="app">
+    <base href="/" />
     <head>
-        <title>Timey - See what time it is anywhere in the world - and what people in that country are doing right now</title>
-        <meta charset="utf-8">
+        <title>Timey - timezones with a human touch</title>
+        
+            <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
         <link rel="shortcut icon" href="images/favicon.ico">
         <link rel="stylesheet" href="stylesheets/app.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900" type="text/css">
 
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-        <script src="javascripts/libs/moment.js"></script>
-        <script src="javascripts/libs/moment-timezone.js"></script>
-        <script src="javascripts/libs/moment-timezone-data.js"></script>
-        <script src="javascripts/libs/rainbowvis.js"></script>
-        <script src="javascripts/libs/angular.js"></script>
-        <script src="javascripts/libs/angular-animate.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.js"></script>
+        
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
 
-        <script src="javascripts/app.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+        <script src="libs/rainbowvis.js"></script>
+        <script src="app.js"></script>
     </head>
 
-    <body ng-controller="PlacesController" ng-class="{ 'state-12hour' : settings.is12Hour == true }">
+    <body ng-class="{ 'state-12hour' : settings.is12Hour == true }" ng-view>
 
-        <input class="new-city-input" tabindex="-1" type="text" size="50" placeholder="Add timezone by entering location" autocomplete="on">
-
-        <ul class="places" ng-cloak ng-show="places.length" >
-            <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
-
-                <div class="time" ng-dblclick="onTimeDoubleClick($event)" >
-                    <input type="number" size="1" class="hour" value-func="getPlaceLocalTimeHour(place)" input-event="onInputChange($event)" />
-                    <input type="number" size="1" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
-                    <input type="text" size="1" tabindex="-1" class="am-pm" value="{{ getPlaceLocalTime(place).format('A') }}" readonly ng-if="settings.is12Hour" />
-                </div>
-
-                <div class="body">
-                    <span class="name">{{place.name}}</span>
-                    <span class="activity">{{getActivityInfoText(place)}}</span>
-                </div>
-
-                <button tabindex="-1" class="remove" ng-click="removeItem(place.referenceId)"></button>
-
-            </li>
-        </ul>
-
-        <div class="welcome" ng-hide="places.length" ng-cloak>
-            <div class="inner">
-                <img class="logo" src="images/logo.svg" />
-                <h1>Welcome to Timey</h1>
-                <h2>We build a little tool to make timezones more human and easier to understand.</h2>
-                <h3>Get started by adding your locations in the top.</h3>
-            </div>
-        </div>
-
-        <div class="map"></div>
     </body>
 </html>

@@ -9,7 +9,7 @@
         "less-middleware": "^1.0.4"
     },
     "scripts": {
-        "start": "node index.js"
+        "start": "node server.js"
     },
     "engines": {
         "npm": "2.x",
