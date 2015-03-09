@@ -94,13 +94,14 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
         places = removeDupes(places);
 
         return places.sort(function(a, b) {
-            var localTime = $scope.getPlaceLocalTime(a);
+            return a.name.localeCompare(b.name);
 
-            if(moment().format() === localTime.format() ) {
-                return -1; // Bump cities with localtime to the top
-            } else {
-                return 1;
-            }
+            // var localTime = $scope.getPlaceLocalTime(a);
+            // if(moment().format() === localTime.format() ) {
+            //     return -1; // Bump cities with localtime to the top
+            // } else {
+            //     return 1;
+            // }
         });
 
     }
