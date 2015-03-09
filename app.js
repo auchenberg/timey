@@ -96,7 +96,7 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
         MINUTES_HAND_SIZE = 0.55,
         HOURS_HAND_SIZE = 0.40;
 
-        var circle = document.getElementById("circle");
+        var circle = document.querySelector(".edge");
 
         // Clock Circle's Properties
         var r = circle.getAttribute('r'),
@@ -107,15 +107,15 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
         var currentTime = new Date();
 
         // Draw Hands
-        drawHand(document.getElementById("sec"),
+        drawHand(document.querySelector(".second"),
                  currentTime.getSeconds(),
                  SECONDS_HAND_SIZE,
                  6);
-        drawHand(document.getElementById("min"),
+        drawHand(document.querySelector(".minute"),
                  currentTime.getMinutes(),
                  MINUTES_HAND_SIZE,
                  6);
-        drawHand(document.getElementById("hour"),
+        drawHand(document.querySelector(".hour"),
                  currentTime.getHours(),
                  HOURS_HAND_SIZE,
                  30);
