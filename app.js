@@ -53,7 +53,7 @@ app.directive('valueFunc', ['$parse', function($parse) {
     };
 }]);
 
-app.controller('AppController', function($scope, $http, $routeParams) {
+app.controller('AppController', function($scope, $http, $routeParams, $location) {
 
     var rainbow, elmSearchInput;
     $scope.places = [];
@@ -130,7 +130,7 @@ app.controller('AppController', function($scope, $http, $routeParams) {
             }, function(places) {
                 var place = places[0];
                 if(place) {
-                    addNewPlace(place);
+                    addNewPlace(place, false);
                 }
             });
 
@@ -151,7 +151,7 @@ app.controller('AppController', function($scope, $http, $routeParams) {
 
     }
 
-    function addNewPlace(gPlace) {
+    function addNewPlace(gPlace, updateUrl) {
 
         var request = {
             reference: gPlace.reference
@@ -190,6 +190,10 @@ app.controller('AppController', function($scope, $http, $routeParams) {
 
             storeData();
 
+            if(updateUrl) {
+                $scope.updateUrl()
+            }
+
         });
     }
 
@@ -200,17 +204,31 @@ app.controller('AppController', function($scope, $http, $routeParams) {
         });
 
         storeData();
+        $scope.updateUrl();
 
     }
 
     // Event handlers
     function onAutoCompleteSuccess() {
         var place = autocompleter.getPlace();
-        addNewPlace(place);
+        addNewPlace(place, true);
 
         setTimeout(function() {
             elmSearchInput.value = '';
         }, 1);
+
+    }
+
+    $scope.updateUrl = function() {
+
+        var names = $scope.places.map(function(place) {
+            return place.name.replace(' ', '_').toLowerCase();
+        });
+
+        var path = names.join('/');
+
+        $location.path(path).replace();
+
     }
 
     $scope.onInputChange = function(event) {
