@@ -1,18 +1,24 @@
 {
-    "name": "timey",
-    "version": "0.0.1",
-    "dependencies": {
-        "ejs": "~0.8.5",
-        "ejs-locals": "~1.0.2",
-        "express": "~4.11.2",
-        "forever": "^0.13.0",
-        "less-middleware": "^1.0.4"
-    },
-    "scripts": {
-        "start": "node server.js"
-    },
-    "engines": {
-        "npm": "2.x",
-        "node": "0.10.x"
-    }  
+  "name": "timey",
+  "version": "0.0.1",
+  "dependencies": {
+    "del": "^1.1.1",
+    "ejs": "~0.8.5",
+    "ejs-locals": "~1.0.2",
+    "express": "~4.11.2",
+    "forever": "^0.13.0",
+    "less-middleware": "^1.0.4",
+    "run-sequence": "^1.0.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "npm": "2.x",
+    "node": "0.10.x"
+  },
+  "devDependencies": {
+    "gulp-load-plugins": "^0.8.1",
+    "sw-precache": "^1.2.6"
+  }
 }
