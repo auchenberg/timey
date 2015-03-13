@@ -23,7 +23,8 @@ function generateServiceWorkerFileContents(rootDir, handleFetch, callback) {
       rootDir + '/stylesheets/**.css',
       rootDir + '/views/**.html',
       rootDir + '/images/**.*',
-      rootDir + '/lib/**.js',
+      rootDir + '/bower_components/**/**.js',
+      rootDir + '/libs/.js',
       rootDir + '/**.js'
     ],
     stripPrefix: path.join(rootDir, path.sep)
