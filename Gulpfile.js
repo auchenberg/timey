@@ -16,6 +16,9 @@ function generateServiceWorkerFileContents(rootDir, handleFetch, callback) {
     cacheId: packageJson.name,
     handleFetch: handleFetch,
     logger: console.log,
+    dynamicUrlToDependencies: {
+      './': [path.join(rootDir, 'views', 'index.ejs')],
+    },    
     staticFileGlobs: [
       rootDir + '/stylesheets/**.css',
       rootDir + '/views/**.html',

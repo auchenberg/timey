@@ -24,7 +24,7 @@
 
 
 
-var PrecacheConfig = [["Gulpfile.js","2b0a81a1331670ef86d0f9f46c78bf32"],["app.js","4747ed33cb3e09d7407e73d40342cae2"],["images/big_icon.png","89d40f205b343ab33e6b58b06705cf7e"],["images/favicon.ico","a2186b6e07f263f8e3eb2237036f094c"],["images/icon.png","084944ead65014b02ec0a991dec002f9"],["images/logo.svg","4fe68385a7383b72a9abe7510dce868f"],["images/trash.svg","2e111b2cc330994faa1ed16277542557"],["server.js","70a8aac2d2fcc8ecd9cdd147b5260bc4"],["stylesheets/app.css","cbbec14ef0f61cd4028f941382a9ed6c"],["views/home.html","f8619de8d70d6f19f8677448f930f23f"]];
+var PrecacheConfig = [["./","6b28f48df7df145b43e09ec3924ad5ab"],["Gulpfile.js","234d0f337529a3952437e365e316fbdb"],["app.js","4747ed33cb3e09d7407e73d40342cae2"],["images/big_icon.png","89d40f205b343ab33e6b58b06705cf7e"],["images/favicon.ico","a2186b6e07f263f8e3eb2237036f094c"],["images/icon.png","084944ead65014b02ec0a991dec002f9"],["images/logo.svg","4fe68385a7383b72a9abe7510dce868f"],["images/trash.svg","2e111b2cc330994faa1ed16277542557"],["server.js","70a8aac2d2fcc8ecd9cdd147b5260bc4"],["service-worker.js","a2725b7b97dc353468c750f42f9e8b08"],["stylesheets/app.css","cbbec14ef0f61cd4028f941382a9ed6c"],["views/home.html","f8619de8d70d6f19f8677448f930f23f"]];
 var CacheNamePrefix = 'sw-precache-v1-timey-' + (self.registration ? self.registration.scope : '') + '-';
 
 
