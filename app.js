@@ -230,8 +230,8 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
             return;
         }
 
-        var lat = gPlace.geometry.location.k;
-        var lng = gPlace.geometry.location.D;
+        var lat = gPlace.geometry.location.A;
+        var lng = gPlace.geometry.location.F;
         var timestamp = Math.round(new Date().getTime() / 1000.0);
         var key = 'AIzaSyDfMh4cBrnNFsbKm4VXqunqCTTbQmk3eNI';
 
