@@ -87,7 +87,7 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
         setInterval(function() {
             drawHands();
         }, 1000)
-        
+
     }
 
    var drawHands = function() {
@@ -119,21 +119,21 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
                  currentTime.getHours(),
                  HOURS_HAND_SIZE,
                  30);
-        
+
         function drawHand(hand, value, size, degrees) {
             var deg = degrees * value;
             x2 = getX(deg, r, size, cx),
             y2 = getY(deg, r, size, cy);
-            
+
             hand.setAttribute('x1', cx);
-            hand.setAttribute('y1', cy); 
+            hand.setAttribute('y1', cy);
             hand.setAttribute('x2', x2);
-            hand.setAttribute('y2', y2); 
+            hand.setAttribute('y2', y2);
         }
     };
 
     function getX(degrees, r, adjust, x) {
-        var x = x || r, 
+        var x = x || r,
         adj = adjust || 1;
         return x + r * adj * Math.cos(getRad(degrees));
     }
@@ -200,7 +200,7 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
             });
 
         });
- 
+
     }
 
     function loadDataFromStorage() {
@@ -224,7 +224,7 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
 
         var existingItem = $scope.places.filter(function(elem, pos) {
             return elem.referenceId === gPlace.reference;
-        }); 
+        });
 
         if(existingItem.length) {
             return;
@@ -249,7 +249,7 @@ app.controller('AppController', function($scope, $http, $routeParams, $location)
                 lng: lng,
                 lat: lat
             }
-            
+
             $scope.places.push(place);
             $scope.places = sortPlaces($scope.places);
 
