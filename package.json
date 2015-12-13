@@ -7,6 +7,7 @@
     "ejs-locals": "~1.0.2",
     "express": "~4.11.2",
     "forever": "^0.13.0",
+    "gulp": "^3.9.0",
     "less-middleware": "^1.0.4",
     "run-sequence": "^1.0.2"
   },
