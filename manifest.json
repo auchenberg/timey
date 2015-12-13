@@ -1,16 +1,24 @@
 {
-  "name": "timey.in",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "See what time it is anywhere in the world - and what people in that country are doing right now.",
-  "icons": {
-    "16": "app/icons/big_icon.png",
-    "48": "app/icons/big_icon.png",
-    "128": "app/icons/big_icon.png"
-  },
-   "browser_action": {
-      "default_icon": "app/icons/icon.png",
-      "default_popup": "app/index.html"
-   },
-   "content_security_policy": "script-src 'self' https://maps.google.com https://*.gstatic.com https://*.googleapis.com 'unsafe-eval'; object-src 'self' "
+  "name": "Timey",
+  "short_name": "Timey",
+  "display": "standalone",
+  "orientation": "portrait",
+  "description": "Timezones with a human touch",
+  "start_url": "./?utm_source=web_app_manifest",
+  "theme_color": "#F1EFEB",
+  "icons": [
+  	{
+    	"src": "images/icon192.png",
+    	"sizes": "192x192"
+  	},
+  	{
+    	"src": "images/icon256.png",
+    	"sizes": "256x256"
+  	},
+  	{
+    	"src": "images/icon512.png",
+    	"sizes": "512x512"
+  	}
+  ],
+  "background_color": "#F1EFEB"
 }
