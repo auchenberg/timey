@@ -2,19 +2,19 @@ var angular = require('angular')
 require('angular-animate')
 require('angular-route')
 
-var app = angular.module('app', [
+var app = angular.module('timey', [
   'ngRoute'
 ])
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
   $routeProvider.when('/', {
-    controller: 'AppController',
+    controller: 'AppCtrl',
     templateUrl: 'views/home.html'
   })
 
   $routeProvider.when('/:zones*', {
-    controller: 'AppController',
+    controller: 'AppCtrl',
     templateUrl: 'views/home.html'
   })
 
@@ -26,4 +26,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 }])
 
-module.exports = app
+require('./controllers')
+require('./directives')
+

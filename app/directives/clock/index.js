@@ -1,6 +1,4 @@
-var app = require('../../app')
-
-app.directive('clock', function() {
+module.exports = function() {
   return {
     templateUrl: 'directives/clock/clock.html',
     link: function($scope, $element, attr) {
@@ -11,7 +9,7 @@ app.directive('clock', function() {
       }, 1000)
     }
   }
-})
+}
 
 function drawHands(elmTarget) {
   // Constants for hand's sizes.

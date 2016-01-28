@@ -4,7 +4,7 @@
   "dependencies": {
     "angular": "^1.4.8",
     "angular-route": "^1.4.8",
-    "browserify-express": "^0.1.4",
+    "browserify-middleware": "^7.0.0",
     "ejs": "~0.8.5",
     "ejs-locals": "~1.0.2",
     "express": "~4.11.2",

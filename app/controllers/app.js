@@ -1,9 +1,8 @@
-var app = require('../app')
 var Rainbow = require('rainbowvis.js')
 var moment = require('moment')
 require('moment-timezone')
 
-app.controller('AppController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+module.exports = function($scope, $http, $routeParams, $location) {
 
   var rainbow
   var autocompleter
@@ -135,6 +134,8 @@ app.controller('AppController', ['$scope', '$http', '$routeParams', '$location',
       $scope.places.push(place);
       $scope.places = sortPlaces($scope.places);
 
+      $scope.baseTime = moment().tz($scope.places[0].timezoneId)
+
       storeData();
 
       if(updateUrl) {
@@ -201,13 +202,25 @@ app.controller('AppController', ['$scope', '$http', '$routeParams', '$location',
   }
 
   $scope.getPlaceLocalTime = function(place) {
-    var localTime = moment().tz(place.timezoneId);
+    return moment().tz(place.timezoneId);
+  }
 
-    if($scope.baseTime) {
-        localTime = $scope.baseTime.tz(place.timezoneId);
+  $scope.onBodyKeyDown = function(e) {
+
+    if(!$scope.baseTime) {
+      return
     }
 
-    return localTime
+    var currentHour = $scope.baseTime.hour()
+    var newHour
+
+    if(e.keyCode === 38) {
+      newHour = currentHour - 1
+    } else if(e.keyCode === 40) {
+      newHour = currentHour + 1
+    }
+
+    $scope.baseTime.hour(newHour)
   }
 
   $scope.getPlaceLocalTimeHour = function(place) {
@@ -276,4 +289,4 @@ app.controller('AppController', ['$scope', '$http', '$routeParams', '$location',
 
   initialize();
 
-}]);
+}
