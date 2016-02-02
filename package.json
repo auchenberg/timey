@@ -2,14 +2,19 @@
   "name": "timey",
   "version": "0.0.1",
   "dependencies": {
-    "del": "^1.1.1",
+    "angular": "^1.4.8",
+    "angular-route": "^1.4.8",
+    "browserify-express": "^0.1.4",
     "ejs": "~0.8.5",
     "ejs-locals": "~1.0.2",
     "express": "~4.11.2",
     "forever": "^0.13.0",
     "gulp": "^3.9.0",
     "less-middleware": "^1.0.4",
-    "run-sequence": "^1.0.2"
+    "material-design-lite": "^1.0.6",
+    "moment": "^2.10.6",
+    "moment-timezone": "^0.4.1",
+    "rainbowvis.js": "^1.0.1"
   },
   "scripts": {
     "start": "node server.js"

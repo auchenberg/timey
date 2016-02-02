@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="app">
+  <base href="/" />
+  <head>
+    <title>Timey - timezones with a human touch</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="stylesheets/app.css">
+
+    <script src="app_bundled.js" async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places" type="text/javascript" async></script>
+  </head>
+
+  <body ng-class="{ 'state-12hour' : settings.is12Hour == true, 'state-show-add-picker' : showNewPicker == true }" ng-view>
+
+  </body>
+</html>
