@@ -7,7 +7,10 @@
             "request": "attach",
             "port": 9222,
             "url": "http://localhost:8080",
-            "sourceMaps": true
+            "sourceMaps": true,
+            "sourceRoot" : "..",
+            "diagnosticLogging": true,
+            "webRoot": "./app/"
         }
     ]
 }
