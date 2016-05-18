@@ -77,11 +77,14 @@ module.exports = function($scope, $http, $routeParams, $location) {
     var map = document.querySelector('.map');
 
     zones.forEach(function(placeName) {
+
       service = new google.maps.places.PlacesService(map);
       service.textSearch({
           query: placeName
       }, function(places) {
+
         var place = places[0];
+
         if(place) {
           addNewPlace(place, false);
         }
@@ -116,16 +119,17 @@ module.exports = function($scope, $http, $routeParams, $location) {
     var lat = gPlace.geometry.location.lat();
     var lng = gPlace.geometry.location.lng();
     var timestamp = Math.round(new Date().getTime() / 1000.0);
-    var key = 'AIzaSyDfMh4cBrnNFsbKm4VXqunqCTTbQmk3eNI';
 
-    var req = $http.get('https://maps.googleapis.com/maps/api/timezone/json?location=' + lat + ',' + lng + '&timestamp=' + timestamp + '&key=' + key);
+    var key = 'ZHVTMF81Y9GU';
+    var req = $http.get('http://api.timezonedb.com/?key=' + key + '&lat=' + lat + '&lng=' + lng + '&format=json');
+
     req.then(function(response) {
       var rawOffset = response.data.rawOffset;
       var dstOffset = response.data.dstOffset;
 
       var place = {
         referenceId: gPlace.reference,
-        timezoneId: response.data.timeZoneId,
+        timezoneId: response.data.zoneName,
         name: gPlace.name,
         lng: lng,
         lat: lat
@@ -141,6 +145,11 @@ module.exports = function($scope, $http, $routeParams, $location) {
       if(updateUrl) {
         $scope.updateUrl()
       }
+    }, function onError() {
+      // retry geocoding... due to throlling on the api
+      $scope.reload_timer = $scope.reload_timer+1000 || 1000;
+      //console.warn('Failed to geocode ', gPlace.name, '. Tries:', gPlace.tries, ', timer:', $scope.reload_timer);
+      setTimeout(addNewPlace.bind(this, gPlace, updateUrl), $scope.reload_timer);
     });
   }
 
