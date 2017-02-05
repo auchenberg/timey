@@ -1,7 +1,10 @@
 var express = require('express')
 var app = express()
 var lessMiddleware = require('less-middleware')
-var browserify = require('browserify-middleware')
+
+var webpack = require('webpack');
+var webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : './webpack.config');
+var compiler = webpack(webpackConfig);
 
 app.engine('ejs', require('ejs-locals'))
 
@@ -13,12 +16,17 @@ app.use(lessMiddleware(__dirname + '/app', {
   force: true
 }))
 
-app.use(express.static(__dirname + '/app'))
+// Step 2: Attach the dev middleware to the compiler & the server
+app.use(require("webpack-dev-middleware")(compiler, {
+  noInfo: true, publicPath: webpackConfig.output.publicPath
+}));
 
-app.get('/app_bundled.js', browserify('./app/app.js', {
-  cache: true,
-  precompile: true
-}))
+// Step 3: Attach the hot middleware to the compiler & the server
+app.use(require("webpack-hot-middleware")(compiler, {
+  log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+}));
+
+app.use(express.static(__dirname + '/app'))
 
 app.get('/*', function(req, res) {
   res.render('index');
