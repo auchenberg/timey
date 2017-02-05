@@ -6,6 +6,9 @@ var app = angular.module('timey', [
   'ngRoute'
 ])
 
+require('./controllers')
+require('./directives')
+
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
   $routeProvider.when('/', {
@@ -26,6 +29,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 }])
 
-require('./controllers')
-require('./directives')
+
+
 
