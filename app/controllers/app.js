@@ -120,16 +120,15 @@ module.exports = function($scope, $http, $routeParams, $location) {
     var lng = gPlace.geometry.location.lng();
     var timestamp = Math.round(new Date().getTime() / 1000.0);
 
-    var key = 'ZHVTMF81Y9GU';
-    var req = $http.get('http://api.timezonedb.com/?key=' + key + '&lat=' + lat + '&lng=' + lng + '&format=json');
+    var req = $http.get('https://timezoneapi.io/api/address/?' + gPlace.formatted_address);
 
     req.then(function(response) {
-      var rawOffset = response.data.rawOffset;
-      var dstOffset = response.data.dstOffset;
+
+      var timeZoneName =  response.data.data.addresses ? response.data.data.addresses[0].timezone.id : ''
 
       var place = {
         referenceId: gPlace.reference,
-        timezoneId: response.data.zoneName,
+        timezoneId: timeZoneName,
         name: gPlace.name,
         lng: lng,
         lat: lat
