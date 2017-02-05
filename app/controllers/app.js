@@ -22,6 +22,8 @@ module.exports = function($scope, $http, $routeParams, $location) {
     elmSearchInput = document.querySelector('.new-city-input');
     var map = document.querySelector('.map');
 
+    window.document.body.addEventListener('keydown', $scope.onBodyKeyDown);
+
     if(window.google) {
       autocompleter = new google.maps.places.Autocomplete(elmSearchInput, {
         types: ['(regions)']
@@ -180,25 +182,6 @@ module.exports = function($scope, $http, $routeParams, $location) {
     $location.path(path).replace();
   }
 
-  $scope.onInputChange = function(event) {
-    var value = event.target.value;
-
-    if(!value.length) {
-      return;
-    }
-
-    var val = parseInt(event.target.value, 10);
-    var placeLocalTime = $scope.getPlaceLocalTime(this.place);
-
-    if($scope.settings.is12Hour) {
-      if(placeLocalTime.format('A') == 'PM' && val != 12) {
-        val = val + 12;
-      }
-    }
-
-    $scope.baseTime = moment().tz(this.place.timezoneId).hour(val);
-  }
-
   $scope.onTimeDoubleClick = function(event){
     $scope.settings.is12Hour = !$scope.settings.is12Hour
     storeData()
@@ -210,13 +193,19 @@ module.exports = function($scope, $http, $routeParams, $location) {
   }
 
   $scope.getPlaceLocalTime = function(place) {
-    return moment().tz(place.timezoneId);
+      var localTime = moment().tz(place.timezoneId);
+
+      if($scope.baseTime) {
+          localTime = $scope.baseTime.tz(place.timezoneId);
+      }
+
+      return localTime;
   }
 
   $scope.onBodyKeyDown = function(e) {
 
     if(!$scope.baseTime) {
-      return
+       $scope.baseTime = moment().tz($scope.places[0].timezoneId)
     }
 
     var currentHour = $scope.baseTime.hour()
@@ -228,11 +217,13 @@ module.exports = function($scope, $http, $routeParams, $location) {
       newHour = currentHour + 1
     }
 
-    $scope.baseTime.hour(newHour)
+    $scope.baseTime.hour(newHour);
+    $scope.$apply();
   }
 
   $scope.getPlaceLocalTimeHour = function(place) {
     var time = $scope.getPlaceLocalTime(place);
+    
     return $scope.settings.is12Hour ? time.format('hh') : time.format('HH');
   }
 

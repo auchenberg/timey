@@ -3,7 +3,7 @@
 <ul class="places" ng-cloak ng-show="places.length" >
   <li ng-repeat="place in places | orderBy:placesSorter track by $index" ng-class="getActivityInfoClass(place)" style='background: {{getGradient(place)}};'>
     <div class="time" ng-dblclick="onTimeDoubleClick($event)" >
-      <input type="number" size="1" class="hour" value-func="getPlaceLocalTimeHour(place)" input-event="onInputChange($event)" />
+      <input type="number" size="1" class="hour" value="getPlaceLocalTimeHour(place)" readonly />
       <input type="number" size="1" tabindex="-1" class="minute" value="{{ getPlaceLocalTime(place).format('mm') }}" readonly />
       <input type="text" size="1" tabindex="-1" class="am-pm" value="{{ getPlaceLocalTime(place).format('A') }}" readonly ng-if="settings.is12Hour" />
     </div>
