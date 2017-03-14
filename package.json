@@ -16,6 +16,7 @@
     "moment-timezone": "^0.4.1",
     "rainbowvis.js": "^1.0.1",
     "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.1",
     "webpack-express-middleware": "^1.2.1"
   },
   "scripts": {
