@@ -1,12 +1,20 @@
 {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Chrome Attach",
             "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceRoot}/app",
+            "userDataDir": "${workspaceRoot}/.vscode/chrome"
+        },
+        {
+            "type": "node",
             "request": "attach",
-            "port": 9222,
-            "sourceMaps": true,
+            "name": "Attach Node",
+            "port": 9229
         }
+
     ]
 }
