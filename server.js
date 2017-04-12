@@ -29,6 +29,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(express.static(__dirname + '/app'))
 
 app.get('/*', function (req, res) {
+  console.log('server.request.index', req)
   res.render('index')
 })
 
