@@ -1,13 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceRoot}/app",
-            "userDataDir": "${workspaceRoot}/.vscode/chrome"
+            "webRoot": "${workspaceRoot}/app"
         },
         {
             "type": "node",
