@@ -204,6 +204,10 @@ module.exports = function($scope, $http, $routeParams, $location) {
 
   $scope.onBodyKeyDown = function(e) {
 
+    if(!$scope.places.length) {
+      return
+    }
+
     if(!$scope.baseTime) {
        $scope.baseTime = moment().tz($scope.places[0].timezoneId)
     }
