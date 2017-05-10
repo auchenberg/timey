@@ -1,20 +1,30 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Node",
+            "port": 9229,
+            "protocol": "inspector",            
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "start"
+            ]
+        },
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome",
+            "name": "Chrome",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceRoot}/app"
-        },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach Node",
-            "port": 9229
         }
-
-    ]
+    ],
+    "compounds": [
+        { 
+            "name": "Full-stack",
+            "configurations": ["Node", "Chrome"]
+        }
+     ]      
 }
