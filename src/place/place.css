@@ -1,0 +1,150 @@
+.place {
+  display: flex;
+  flex: 1;
+
+  margin: 0;
+  padding: 20px;
+
+  list-style-type: none;
+
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  font-size: 7vmin;
+  transition: color 0.5s linear;
+
+  border-bottom: 1px solid #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.place.state-lunch {
+  color: #000;
+}
+
+.place.state-lunch .activity {
+  color: #000;
+}
+
+.place.state-lunch .time input {
+  color: #000;
+}
+
+.place.state-breakfast {
+  color: #23211d;
+}
+
+.place.state-breakfast .activity {
+  color: #646464;
+}
+
+.place.state-breakfast .time input {
+  color: #23211d;
+}
+
+.place.state-office {
+  color: #000;
+}
+
+.place.state-office .activity {
+  color: #000;
+}
+
+.place.state-office .time input {
+  color: #000;
+}
+
+.place:hover .remove {
+  opacity: 1;
+}
+
+.place .time {
+  float: left;
+  margin-right: 0;
+  -webkit-user-select:none;
+     -moz-user-select:none;
+          user-select:none;
+}
+
+.place .time .hour {
+  display: inline-block;
+  width: 11vmin;
+
+  color: #fff;
+  text-align: right;
+  font-size: 7vmin;
+  padding: 0 5px;
+  margin-right: 10px;
+  border: 0;
+  background: transparent;
+}
+
+.place .time .minute {
+  display: inline-block;
+  width: 8vmin;
+
+  text-align: left;
+  font-size: 7vmin;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.place .time input {
+  color: #fff;
+}
+
+.place .time .am-pm {
+  display: inline-block;
+  width: 11vmin;
+
+  text-align: left;
+  font-size: 4vmin;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.place .remove {
+  float: right;
+  opacity: 0;
+  height: 6vmin;
+  width: 6vmin;
+  margin-right: 5px;
+
+  background: url('/images/trash.svg') no-repeat center center;
+  background-size: contain;
+  border: 0;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.place .name {
+  margin-right: 5px;
+  display: block;
+  line-height: 7vmin;
+}
+
+.place .activity {
+  font-size: 4vmin;
+  color: #f6f6f6;
+  transition: color 0.5s linear;
+  padding-left: 4px;
+}
+
+.place .body {
+  flex: 1;
+  text-align: left;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}

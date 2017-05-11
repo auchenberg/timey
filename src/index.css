@@ -1,0 +1,60 @@
+html, body, #root, .app {
+  height: 100%;
+}
+
+body {
+  min-width: 380px;
+  min-height: 280px;
+  width: 100%;
+
+  padding: 0;
+  margin: 0;
+  background: #F1EFEB;
+
+  font: normal 13px Roboto, arial, sans-serif;
+  font-weight: 300;
+  text-transform: none;
+  color: #5A6063;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 5vmin;
+}
+
+h2 {
+  font-size: 2.5vmin;
+}
+
+h3 {
+  font-size: 2vmin;
+}
+
+body:not(.state-12hour) .places li .time .minute {
+  margin-right: 4.5vmin;
+}
+
+.add-new {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+
+.pac-container {
+  width: 380px !important;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.pac-container:after {
+  display: none;
+}
+
+.map {
+  display: none;
+}
+
+

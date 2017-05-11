@@ -1,33 +1,21 @@
 {
   "name": "timey",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "angular": "^1.4.8",
-    "angular-animate": "^1.4.9",
-    "angular-route": "^1.4.8",
-    "ejs": "~0.8.5",
-    "ejs-locals": "~1.0.2",
-    "express": "~4.11.2",
-    "forever": "^0.13.0",
-    "gulp": "^3.9.0",
-    "less-middleware": "^1.0.4",
-    "material-design-lite": "^1.0.6",
-    "moment": "^2.10.6",
-    "moment-timezone": "^0.4.1",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "rainbowvis.js": "^1.0.1",
-    "webpack": "^2.2.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-express-middleware": "^1.2.1"
-  },
-  "scripts": {
-    "start": "node --inspect=9229 server.js"
-  },
-  "engines": {
-    "node": "7.5.x"
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
-    "gulp-load-plugins": "^0.8.1",
-    "sw-precache": "^1.2.6",
-    "webpack-hot-middleware": "^2.16.1"
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }

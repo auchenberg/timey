@@ -1,0 +1,28 @@
+.clock {
+  fill: #BE1E2D;
+}
+
+.edge {
+  fill: #F1F2F2;
+}
+
+.hour {
+  stroke-width: 2px;
+  stroke: #414042;
+}
+
+.second {
+  stroke-width: 2px;
+  stroke: #CF2257;
+}
+
+.minute {
+  stroke-width: 2px;
+  stroke: #414042;
+}
+
+#sec {
+  stroke: #CF2257;
+  stroke-width: 2px;
+}
+

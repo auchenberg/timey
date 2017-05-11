@@ -24,6 +24,11 @@ app.use(express.static(__dirname + '/app'))
 
 app.get('/*', function (req, res) {
   console.log('server.request.index', req)
+
+  if(req.url == 'hello') {
+    console.log('hello detected')
+  }
+  
   res.render('index')
 })
 
