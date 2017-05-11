@@ -32,11 +32,11 @@ class PlacePicker extends Component {
 
     addNewPlace(gPlace) {
         
-        var req = window.fetch('https://timezoneapi.io/api/address/?' + gPlace.formatted_address);
+        var req = window.fetch('http://localhost:3001/api/timezone?place=' + gPlace.formatted_address);
 
         req.then( (response) => { return response.json()}).then( (response) => {
 
-            // TODO: Fix .data.data
+            // Hint: Fix .data.data
             var timeZoneName =  response.data.data.addresses ? response.data.addresses[0].timezone.id : ''
 
             var place = {

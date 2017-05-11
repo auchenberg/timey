@@ -1,37 +1,18 @@
-var express = require('express')
-var app = express()
-var lessMiddleware = require('less-middleware')
+const express = require('express');
+const request =require('request');
+const app = express();
 
-var webpack = require('webpack')
-var webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : './webpack.config')
-var compiler = webpack(webpackConfig)
+app.set('port', (process.env.PORT|| 3001));
 
-app.engine('ejs', require('ejs-locals'))
+app.get('/api/timezone', (req, res) => {
 
-app.set('port', process.env.PORT || 8080)
-app.set('views', __dirname + '/app/views')
-app.set('view engine', 'ejs')
-
-app.use(lessMiddleware(__dirname + '/app', {
-  force: true
-}))
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath
-}))
-
-app.use(express.static(__dirname + '/app'))
-
-app.get('/*', function (req, res) {
-  console.log('server.request.index', req)
-
-  if(req.url == 'hello') {
-    console.log('hello detected')
-  }
-  
-  res.render('index')
+  request(`https://timezoneapi.io/api/address/?${req.query.place}`, (err, param, response) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");    
+    res.json(JSON.parse(response));   
+  })
 })
 
-app.listen(app.get('port'), function () {
-  console.log('Express server listening on port %d in %s mode', app.get('port'), app.settings.env)
-})
+app.listen(app.get('port'), () => {
+  console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
+});

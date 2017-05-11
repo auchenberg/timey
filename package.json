@@ -1,21 +1,17 @@
 {
-  "name": "timey",
-  "version": "0.1.0",
+  "name": "timey-server",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "moment": "^2.18.1",
-    "moment-timezone": "^0.5.13",
-    "rainbowvis.js": "^1.0.1",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "express": "4.13.3",
+    "request": "^2.81.0"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "concurrently": "3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node --inspect server.js",
+    "client": "node start-client.js"
   }
 }
