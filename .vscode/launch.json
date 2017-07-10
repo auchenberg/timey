@@ -1,14 +1,16 @@
 {
     "version": "0.2.0",
     "configurations": [
-
         {
             "type": "node",
             "request": "launch",
             "name": "Node",
             "port": 9229,
-            "protocol": "inspector",            
+            "protocol": "inspector",
             "runtimeExecutable": "npm",
+            "windows": {
+                "runtimeExecutable": "npm.cmd"
+            },
             "runtimeArgs": [
                 "run-script",
                 "start"
@@ -24,8 +26,7 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${webRoot}/*",
                 "webpack:///src/*": "${webRoot}/src/*"
-            },
-            "trace": "verbose"            
+            }
         }
     ],
     "compounds": [
