@@ -20,7 +20,12 @@
             "request": "launch",
             "name": "Chrome",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceRoot}/client/src"
+            "webRoot": "${workspaceRoot}/client",
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${webRoot}/*",
+                "webpack:///src/*": "${webRoot}/src/*"
+            },
+            "trace": "verbose"            
         }
     ],
     "compounds": [
