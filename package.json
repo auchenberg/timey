@@ -12,6 +12,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node --inspect server.js",
-    "client": "node start-client.js"
+    "client": "node client_start.js",
+    "install_client": "node client_install.js"
   }
 }
