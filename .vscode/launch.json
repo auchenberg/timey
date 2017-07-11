@@ -1,38 +1,35 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Node",
-            "port": 9229,
-            "protocol": "inspector",
-            "runtimeExecutable": "npm",
-            "windows": {
-                "runtimeExecutable": "npm.cmd"
-            },
-            "runtimeArgs": [
-                "run-script",
-                "start"
-            ],
-            "console": "integratedTerminal"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Chrome",
-            "url": "http://localhost:3000",
-            "webRoot": "${workspaceRoot}/client",
-            "sourceMapPathOverrides": {
-                "webpack:///./*": "${webRoot}/*",
-                "webpack:///src/*": "${webRoot}/src/*"
-            }
-        }
-    ],
-    "compounds": [
-        { 
-            "name": "Full-stack",
-            "configurations": ["Node", "Chrome"]
-        }
-     ]      
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node",
+      "port": 9229,
+      "protocol": "inspector",
+      "runtimeExecutable": "npm",
+      "windows": {
+        "runtimeExecutable": "npm.cmd"
+      },
+      "runtimeArgs": ["run-script", "start"],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/client",
+      "sourceMapPathOverrides": {
+        "webpack:///./*": "${webRoot}/*",
+        "webpack:///src/*": "${webRoot}/src/*"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full-stack",
+      "configurations": ["Node", "Chrome"]
+    }
+  ]
 }

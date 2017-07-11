@@ -1,4 +1,7 @@
-html, body, #root, .app {
+html,
+body,
+#root,
+.app {
   height: 100%;
 }
 
@@ -9,15 +12,18 @@ body {
 
   padding: 0;
   margin: 0;
-  background: #F1EFEB;
+  background: #f1efeb;
 
   font: normal 13px Roboto, arial, sans-serif;
   font-weight: 300;
   text-transform: none;
-  color: #5A6063;
+  color: #5a6063;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 300;
 }
 
@@ -56,5 +62,3 @@ body:not(.state-12hour) .places li .time .minute {
 .map {
   display: none;
 }
-
-

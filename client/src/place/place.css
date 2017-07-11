@@ -63,9 +63,9 @@
 .place .time {
   float: left;
   margin-right: 0;
-  -webkit-user-select:none;
-     -moz-user-select:none;
-          user-select:none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .place .time .hour {
@@ -146,5 +146,5 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type=number] {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }

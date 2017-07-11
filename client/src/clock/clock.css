@@ -1,9 +1,9 @@
 .clock {
-  fill: #BE1E2D;
+  fill: #be1e2d;
 }
 
 .edge {
-  fill: #F1F2F2;
+  fill: #f1f2f2;
 }
 
 .hour {
@@ -13,7 +13,7 @@
 
 .second {
   stroke-width: 2px;
-  stroke: #CF2257;
+  stroke: #cf2257;
 }
 
 .minute {
@@ -22,7 +22,6 @@
 }
 
 #sec {
-  stroke: #CF2257;
+  stroke: #cf2257;
   stroke-width: 2px;
 }
-
