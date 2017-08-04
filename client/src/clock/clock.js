@@ -130,6 +130,10 @@ class Clock extends Component {
 
     var circle = document.querySelector('.edge')
 
+    if(!circle) {
+      return
+    }
+
     // Clock Circle's Properties
     var r = circle.getAttribute('r'),
       cx = parseInt(circle.getAttribute('cx')),
