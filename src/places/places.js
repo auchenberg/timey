@@ -12,6 +12,8 @@ class Places extends Component {
     this.state = {
       baseTime: null
     }
+
+    this._onKeyDown = this._onKeyDown.bind(this)
   }
 
   _onKeyDown(e) {
@@ -47,11 +49,11 @@ class Places extends Component {
   }
 
   componentWillMount() {
-    document.addEventListener('keydown', this._onKeyDown.bind(this))
+    document.addEventListener('keydown', this._onKeyDown)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this._onKeyDown.bind(this))
+    document.removeEventListener('keydown', this._onKeyDown)
   }
 
   render() {
