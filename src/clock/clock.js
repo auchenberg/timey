@@ -115,11 +115,17 @@ class Clock extends Component {
 
   componentDidMount() {
     var that = this
-    setInterval(() => {
+    that.interval = setInterval(() => {
       that.drawHands()
     }, 1000)
 
     this.drawHands()
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    } 
   }
 
   drawHands() {
@@ -136,8 +142,8 @@ class Clock extends Component {
 
     // Clock Circle's Properties
     var r = circle.getAttribute('r'),
-      cx = parseInt(circle.getAttribute('cx')),
-      cy = parseInt(circle.getAttribute('cy'))
+      cx = parseInt(circle.getAttribute('cx'), 10),
+      cy = parseInt(circle.getAttribute('cy'), 10)
 
     // Current time.
     var currentTime = new Date()
@@ -166,15 +172,13 @@ class Clock extends Component {
 }
 
 function getX(degrees, r, adjust, x) {
-  var x = x || r,
-    adj = adjust || 1
-  return x + r * adj * Math.cos(getRad(degrees))
+  var x1 = x || r, adj = adjust || 1
+  return x1 + r * adj * Math.cos(getRad(degrees))
 }
 
 function getY(degrees, r, adjust, y) {
-  var y = y || r,
-    adj = adjust || 1
-  return y + r * adj * Math.sin(getRad(degrees))
+  var y1 = y || r, adj = adjust || 1
+  return y1 + r * adj * Math.sin(getRad(degrees))
 }
 
 function getRad(degrees) {
