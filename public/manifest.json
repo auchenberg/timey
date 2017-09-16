@@ -1,0 +1,24 @@
+{
+  "name": "Timey",
+  "short_name": "Timey",
+  "display": "standalone",
+  "orientation": "portrait",
+  "description": "Timezones with a human touch",
+  "start_url": "./?utm_source=web_app_manifest",
+  "theme_color": "#F1EFEB",
+  "icons": [
+  	{
+    	"src": "images/icon192.png",
+    	"sizes": "192x192"
+  	},
+  	{
+    	"src": "images/icon256.png",
+    	"sizes": "256x256"
+  	},
+  	{
+    	"src": "images/icon512.png",
+    	"sizes": "512x512"
+  	}
+  ],
+  "background_color": "#F1EFEB"
+}

@@ -30,17 +30,16 @@ class PlacePicker extends Component {
   }
 
   addNewPlace(gPlace) {
-    let url = 'http://localhost:3001/api/timezone?place=' + gPlace.formatted_address
+    let url = 'https://timezoneapi.io/api/address/?' + gPlace.formatted_address
     var req = window.fetch(url)
 
-    req
-      .then(response => {
+    req.then(response => {
         return response.json()
       })
       .then(
         response => {
           // Hint: Fix .data.data
-          var timeZoneName = response.data.addresses ? response.data.data.addresses[0].timezone.id : ''
+          var timeZoneName = response.data.addresses ? response.data.addresses[0].timezone.id : ''
 
           var place = {
             referenceId: gPlace.reference,

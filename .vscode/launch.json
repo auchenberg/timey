@@ -8,22 +8,17 @@
       "port": 9229,
       "protocol": "inspector",
       "runtimeExecutable": "npm",
-      "windows": {
-        "runtimeExecutable": "npm.cmd"
-      },
       "runtimeArgs": ["run-script", "start"],
       "console": "integratedTerminal"
     },
     {
       "type": "chrome",
-      "request": "launch",
+      "request": "attach",
       "name": "Chrome",
+      "port": 9222,
       "url": "http://localhost:3000",
       "webRoot": "${workspaceRoot}/client",
-      "sourceMapPathOverrides": {
-        "webpack:///./*": "${webRoot}/*",
-        "webpack:///src/*": "${webRoot}/src/*"
-      }
+      "trace": "verbose"
     }
   ],
   "compounds": [
