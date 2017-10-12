@@ -19,6 +19,16 @@
       "url": "http://localhost:3000",
       "webRoot": "${workspaceRoot}/client",
       "trace": "verbose"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chrome Canary",
+      "port": 9222,
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceRoot}/client",
+      "runtimeExecutable": "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+      "trace": "verbose"
     }
   ],
   "compounds": [
