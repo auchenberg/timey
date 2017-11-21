@@ -12,7 +12,7 @@
       "request": "launch",
       "name": "Chrome",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceRoot}/client"
+      "webRoot": "${workspaceRoot}/src"
     }
   ],
   "compounds": [
