@@ -30,8 +30,8 @@ class PlacePicker extends Component {
   }
 
   addNewPlace(gPlace) {
-    let url = 'http://localhost:3001/api/timezone?place=' + gPlace.formatted_address
-    // let url = 'https://timezoneapi.io/api/address/?' + gPlace.formatted_address
+    //let url = 'http://localhost:3001/api/timezone?place=' + gPlace.formatted_address
+     let url = 'https://timezoneapi.io/api/address/?' + gPlace.formatted_address
     var req = window.fetch(url)
 
     req.then(response => {
