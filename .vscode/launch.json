@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/src"
+    },
+    {
       "type": "node",
       "request": "attach",
       "name": "Node",
@@ -11,7 +18,8 @@
       "type": "chrome",
       "request": "launch",
       "name": "Chrome",
-      "url": "http://localhost:3000",
+      "url": "http://facebook.com",
+      "breakOnLoad": true,
       "webRoot": "${workspaceRoot}/src"
     }
   ],
