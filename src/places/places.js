@@ -35,9 +35,9 @@ class Places extends Component {
     var newHour
 
     // TODO: Fix incrediment issue.
-    if (e.keyCode === 38) {
+    if (e.keyCode === 38 || e.keyCode === 37) { // up or left
       newHour = currentHour - 1
-    } else if (e.keyCode === 40) {
+    } else if (e.keyCode === 40 || e.keyCode === 39) { // Down or right
       newHour = currentHour + 1
     }
 
