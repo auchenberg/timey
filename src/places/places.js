@@ -60,8 +60,6 @@ class Places extends Component {
     return (
       <ul className="places">
         {this.props.places.map(place => {
-          console.log('place: ' + place.name)
-          console.error('Not an error')
           return (
             <Place
               key={place.name}
