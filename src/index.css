@@ -3,7 +3,9 @@ body,
 #root,
 .app {
   height: 100%;
+  background: #f1efeb;
 }
+
 
 body {
   min-width: 380px;
