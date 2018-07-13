@@ -14,11 +14,10 @@ class App extends Component {
     this.onPlaceRemoved = this.onPlaceRemoved.bind(this)
     this.onTimeFormatChanged = this.onTimeFormatChanged.bind(this)
 
-    this.state = {
+    this.defaultState = {
       baseTime: null,
-      showPlacePlicker: false,
-      places: [],
-      timeFormat: '24hour'
+      timeFormat: '24hour',
+      showPlacePlicker: false
     }
 
     // Timer for rendering every minute
@@ -41,62 +40,59 @@ class App extends Component {
     updatedPlaces.push(place)
     updatedPlaces = updatedPlaces.sort((a, b) => a.name.localeCompare(b.name))
 
-    this.setState(
-      {
-        places: updatedPlaces,
-        showPlacePlicker: false
-      },
-      () => {
-        this.store()
-      }
-    )
+    var settings = {...this.state.settings}
+    settings.showPlacePlicker = false;
+
+    this.setState({
+      places: updatedPlaces,
+      settings: settings
+    }, this.store)
   }
 
   onPlaceRemoved(place) {
     var updatedPlaces = this.state.places.filter(p => p.referenceId !== place.referenceId)
 
-    this.setState(
-      {
-        places: updatedPlaces
-      },
-      () => {
-        this.store()
-      }
-    )
+    this.setState({
+      places: updatedPlaces
+    }, this.store)
   }
 
   onAddNewClick() {
-    this.setState({
-      showPlacePlicker: !this.state.showPlacePlicker
-    })
+    var settings = {...this.state.settings}
+    settings.showPlacePlicker = !this.state.settings.showPlacePlicker;
+
+    this.setState({settings}, this.store)
   }
 
   onTimeFormatChanged(timeFormat) {
-    this.setState({
-      timeFormat: timeFormat
-    })
+    var settings = {...this.state.settings}
+    settings.timeFormat = timeFormat;
+
+    this.setState({settings}, this.store)
   }
 
   load() {
     this.setState({
-      places: JSON.parse(localStorage.getItem('places')) || []
+      places: JSON.parse(localStorage.getItem('places')) || [],
+      settings: JSON.parse(localStorage.getItem('settings'))
     })
   }
 
   store() {
+    localStorage.setItem('settings', JSON.stringify(this.state.settings))
     localStorage.setItem('places', JSON.stringify(this.state.places))
   }
 
   render() {
     return (
-      <div className={this.state.showPlacePlicker ? 'app state-show-place-picker' : 'app'}>
-        <PlacePicker onPlaceAdded={this.onPlaceAdded} isVisible={this.state.showPlacePlicker} />
+      <div className={this.state.settings.showPlacePlicker ? 'app state-show-place-picker' : 'app'}>
+        <PlacePicker onPlaceAdded={this.onPlaceAdded} isVisible={this.state.settings.showPlacePlicker} />
 
         {this.state.places.length > 0
           ? <Places
               places={this.state.places}
-              baseTime={this.state.baseTime}
-              timeFormat={this.state.timeFormat}
+              baseTime={this.state.settings.baseTime}
+              timeFormat={this.state.settings.timeFormat}
               onPlaceRemoved={this.onPlaceRemoved}
               onTimeFormatChanged={this.onTimeFormatChanged}
             />
