@@ -74,7 +74,7 @@ class App extends Component {
   load() {
     this.setState({
       places: JSON.parse(localStorage.getItem('places')) || [],
-      settings: JSON.parse(localStorage.getItem('settings'))
+      settings: JSON.parse(localStorage.getItem('settings')) || this.defaultState
     })
   }
 
