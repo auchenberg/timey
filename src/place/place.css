@@ -34,6 +34,10 @@
   color: #000;
 }
 
+.place.state-lunch .remove {
+  filter: brightness(0.0)  
+}
+
 .place.state-breakfast {
   color: #23211d;
 }
@@ -48,6 +52,10 @@
   color: #23211d;
 }
 
+.place.state-breakfast .remove {
+  filter: brightness(0.0)  
+}
+
 .place.state-office {
   color: #000;
 }
@@ -60,6 +68,10 @@
 
 .place.state-office .time input {
   color: #000;
+}
+
+.place.state-office .remove {
+  filter: brightness(0.0)  
 }
 
 .place:hover .remove {
