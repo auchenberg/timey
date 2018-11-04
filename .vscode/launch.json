@@ -18,7 +18,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Chrome",
-      "url": "http://facebook.com",
+      "url": "http://localhost:3000",
       "breakOnLoad": true,
       "webRoot": "${workspaceRoot}/src"
     }
