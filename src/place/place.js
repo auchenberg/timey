@@ -108,6 +108,8 @@ class Place extends Component {
     const hourLabel = this.getTimeHour()
     const minuteLabel = this.getLocalTime().format('mm')
     const postfixLabel = this.getLocalTime().format('A')
+    const dateLabel = this.getLocalTime().format('dddd, MMMM D YYYY')
+    const timezoneLabel = this.getLocalTime().format('(Z zz)')
 
     return (
       <li style={{ background: gradientBackground }} className={'place ' + activityClassName}>
@@ -116,15 +118,24 @@ class Place extends Component {
           <input type="number" size="1" tabIndex="-1" className="minute" value={minuteLabel} readOnly />
           {this.props.timeFormat === '12hours' &&
             <input type="text" size="1" tabIndex="-1" className="am-pm" value={postfixLabel} readOnly />}
+         
+          <div className="timezone">
+            {timezoneLabel}
+          </div>          
         </div>
 
         <div className="body">
           <span className="name">
             {this.props.place.name}
           </span>
+
           <span className="activity">
             {activityName}
           </span>
+
+          <div className="date">
+            {dateLabel}
+          </div>               
         </div>
 
         <button tabIndex="-1" className="remove" onClick={this.onRemoveClicked} />

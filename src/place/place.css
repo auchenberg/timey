@@ -134,6 +134,24 @@
   padding-left: 4px;
 }
 
+
+.place .timezone {
+  display: block;
+  font-size: 2vmin;
+  color: #f6f6f6;
+  transition: color 0.5s linear;
+  padding-left: 45px;
+}
+
+.place .date {
+  display: block;
+  font-size: 2vmin;
+  color: #f6f6f6;
+  transition: color 0.5s linear;
+  padding-left: 4px;
+  margin-top: 10px;
+}
+
 .place .body {
   flex: 1;
   text-align: left;
