@@ -24,7 +24,9 @@
   color: #000;
 }
 
-.place.state-lunch .activity {
+.place.state-lunch .activity,
+.place.state-lunch .date,
+.place.state-lunch .timezone   {
   color: #000;
 }
 
@@ -36,7 +38,9 @@
   color: #23211d;
 }
 
-.place.state-breakfast .activity {
+.place.state-breakfast .activity,
+.place.state-breakfast .date,
+.place.state-breakfast .timezone {
   color: #646464;
 }
 
@@ -48,7 +52,9 @@
   color: #000;
 }
 
-.place.state-office .activity {
+.place.state-office .activity,
+.place.state-office .date,
+.place.state-office .timezone {
   color: #000;
 }
 
