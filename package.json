@@ -9,7 +9,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "^2.1.1",
-    "serve": "^6.1.0"
+    "serve": "^10.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
