@@ -1,57 +1,53 @@
-import React, { Component } from 'react'
-import './placePicker.css'
+import React, { Component } from "react";
+import "./placePicker.css";
 
 class PlacePicker extends Component {
   componentDidMount() {
-    this.elmSearchInput = document.querySelector('.new-city-input')
+    this.elmSearchInput = document.querySelector(".new-city-input");
 
     if (window.google) {
-      this.autocompleter = new window.google.maps.places.Autocomplete(this.elmSearchInput, {
-        types: ['(regions)']
-      })
+      this.autocompleter = new window.google.maps.places.Autocomplete(
+        this.elmSearchInput,
+        {
+          types: ["(regions)"],
+        }
+      );
 
-      window.google.maps.event.addListener(this.autocompleter, 'place_changed', this.onAutoCompleteSuccess.bind(this))
+      window.google.maps.event.addListener(
+        this.autocompleter,
+        "place_changed",
+        this.onAutoCompleteSuccess.bind(this)
+      );
     }
   }
 
   componentDidUpdate() {
     if (this.props.isVisible) {
-      this.elmSearchInput.focus()
+      this.elmSearchInput.focus();
     }
   }
 
   onAutoCompleteSuccess() {
-    var place = this.autocompleter.getPlace()
-    this.addNewPlace(place)
+    var place = this.autocompleter.getPlace();
+    this.addNewPlace(place);
 
     setTimeout(() => {
-      this.elmSearchInput.value = ''
-    }, 1)
+      this.elmSearchInput.value = "";
+    }, 1);
   }
 
   addNewPlace(gPlace) {
-     let url = 'https://timezoneapi.io/api/address/?' + gPlace.formatted_address + '&srf=timey.in'
-    var req = window.fetch(url)
+    console.log("gPlace", gPlace);
 
-    req.then(response => {
-        return response.json()
-      })
-      .then(
-        response => {
-          var timeZoneName = response.data.addresses.length ? response.data.addresses[0].timezone.id : ''
+    var place = {
+      referenceId: gPlace.reference,
+      utcOffset: gPlace.utc_offset_minutes,
+      name: gPlace.name,
+      lng: gPlace.geometry.location.lng(),
+      lat: gPlace.geometry.location.lat(),
+    };
 
-          var place = {
-            referenceId: gPlace.reference,
-            timezoneId: timeZoneName,
-            name: gPlace.name,
-            lng: gPlace.geometry.location.lng(),
-            lat: gPlace.geometry.location.lat()
-          }
-
-          this.props.onPlaceAdded(place)
-        },
-        function onError() {}
-      )
+    this.props.onPlaceAdded(place);
   }
 
   render() {
@@ -66,10 +62,11 @@ class PlacePicker extends Component {
           placeholder="Type to add timezone..."
           autoComplete="on"
           autoFocus
-        />'
+        />
+        '
       </div>
-    )
+    );
   }
 }
 
-export default PlacePicker
+export default PlacePicker;

@@ -1,65 +1,67 @@
-import React, { Component } from 'react'
-import Place from '../place/place'
-import moment from 'moment'
-import 'moment-timezone'
+import React, { Component } from "react";
+import Place from "../place/place";
+import moment from "moment";
+import "moment-timezone";
 
-import './places.css'
+import "./places.css";
 
 class Places extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      baseTime: null
-    }
+      baseTime: null,
+    };
 
-    this._onKeyDown = this._onKeyDown.bind(this)
+    this._onKeyDown = this._onKeyDown.bind(this);
   }
 
   _onKeyDown(e) {
     if (!this.props.places.length) {
-      return
+      return;
     }
 
     if (!e.keyCode === 38 || !e.keyCode === 40) {
-      return
+      return;
     }
 
     if (!this.state.baseTime) {
       this.setState({
-        baseTime: moment().tz(this.props.places[0].timezoneId)
-      })
+        baseTime: moment().utcOffset(this.props.places[0].utcOffset),
+      });
     }
 
-    var currentHour = this.state.baseTime.hour()
-    var newHour
+    var currentHour = this.state.baseTime.hour();
+    var newHour;
 
     // TODO: Fix incrediment issue.
-    if (e.keyCode === 38 || e.keyCode === 37) { // up or left
-      newHour = currentHour - 1
-    } else if (e.keyCode === 40 || e.keyCode === 39) { // Down or right
-      newHour = currentHour + 1
+    if (e.keyCode === 38 || e.keyCode === 37) {
+      // up or left
+      newHour = currentHour - 1;
+    } else if (e.keyCode === 40 || e.keyCode === 39) {
+      // Down or right
+      newHour = currentHour + 1;
     }
 
-    this.state.baseTime.hour(newHour)
+    this.state.baseTime.hour(newHour);
 
     this.setState({
-      baseTime: this.state.baseTime
-    })
+      baseTime: this.state.baseTime,
+    });
   }
 
   componentWillMount() {
-    document.addEventListener('keydown', this._onKeyDown)
+    document.addEventListener("keydown", this._onKeyDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this._onKeyDown)
+    document.removeEventListener("keydown", this._onKeyDown);
   }
 
   render() {
     return (
       <ul className="places">
-        {this.props.places.map(place => {
+        {this.props.places.map((place) => {
           return (
             <Place
               key={place.name}
@@ -70,11 +72,11 @@ class Places extends Component {
               onPlaceRemoved={this.props.onPlaceRemoved}
               onTimeFormatChanged={this.props.onTimeFormatChanged}
             />
-          )
+          );
         })}
       </ul>
-    )
+    );
   }
 }
 
-export default Places
+export default Places;

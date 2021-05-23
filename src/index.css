@@ -6,7 +6,6 @@ body,
   background: #f1efeb;
 }
 
-
 body {
   min-width: 380px;
   min-height: 280px;
@@ -16,8 +15,7 @@ body {
   margin: 0;
   background: #f1efeb;
 
-  font: normal 13px Roboto, arial, sans-serif;
-  font-weight: 300;
+  font-family: "Inter", sans-serif;
   text-transform: none;
   color: #5a6063;
 }
