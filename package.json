@@ -8,7 +8,7 @@
     "rainbowvis.js": "^1.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "^2.1.1",
+    "react-scripts": "^5.0.1",
     "serve": "^6.1.0"
   },
   "scripts": {
